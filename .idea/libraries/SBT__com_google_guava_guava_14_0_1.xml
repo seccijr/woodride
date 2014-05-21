@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="SBT: com.google.guava:guava:14.0.1">
+    <CLASSES>
+      <root url="jar:///usr/local/src/play-2.2.2/repository/local/com.google.guava/guava/14.0.1/bundles/guava.jar!/" />
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.google.guava/guava/jars/guava-14.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.google.guava/guava/docs/guava-14.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.google.guava/guava/srcs/guava-14.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

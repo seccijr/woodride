@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Test page
+GET        /test/product/:ref   @controllers.TTestController.product(ref)
+
+# Home page
+GET        /                    @controllers.TApplicationController.index
+
+# Products page
+GET        /catalog             @controllers.TProductController.catalog(page: Option[Int], pageSize: Option[Int])
+
+# Details page
+GET        /product/:ref        @controllers.TProductController.details(ref)
+
+# About page
+GET        /about               @controllers.TApplicationController.about
+
+# Blog page
+GET        /blog                @controllers.TApplicationController.blog
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file        controllers.Assets.at(path="/public", file)

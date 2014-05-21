@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="SBT: com.typesafe.play:anorm_2.10:2.2.2">
+    <CLASSES>
+      <root url="jar:///usr/local/src/play-2.2.2/repository/local/com.typesafe.play/anorm_2.10/2.2.2/jars/anorm_2.10.jar!/" />
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/anorm_2.10/jars/anorm_2.10-2.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/anorm_2.10/srcs/anorm_2.10-2.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

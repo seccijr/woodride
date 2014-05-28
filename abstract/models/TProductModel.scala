@@ -9,7 +9,8 @@ trait  TProductModelComposition {
 trait TProductModel {
   def getByName(name: String): TProduct
   def getByRef(ref: String): TProduct
-  def getCatalog(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
+  def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
+  def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
 }
 
 trait TProduct {

@@ -109,7 +109,7 @@ class ProductModel extends TProductModel {
       .on("ref" -> ref)().map(productRowParser).head
   }
 
-  override def getCatalog(page: Int, pageSize: Int, productTpe: ProductType): List[TProduct] = {
+  override def getNewArrivals(page: Int, pageSize: Int, productTpe: ProductType): List[TProduct] = {
     Cypher(
       s"""
         |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {sort: {sort}})
@@ -120,4 +120,16 @@ class ProductModel extends TProductModel {
       """.stripMargin)
       .on("sort" -> productTpe.toString)().toList.map(productRowParser)
   }
+
+    override def getBestSeller(page: Int, pageSize: Int, productTpe: ProductType): List[TProduct] = {
+      Cypher(
+        s"""
+        |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {sort: {sort}})
+        |WITH p1, r1 ORDER BY r1.date DESC LIMIT 1
+        |MATCH (p2:Price)-[r2:COST_PRICE]->(n)
+        |WITH p1, p2, r1, r2, n ORDER BY r1.date DESC LIMIT 1
+        |RETURN ${productRowDef}
+      """.stripMargin)
+        .on("sort" -> productTpe.toString)().toList.map(productRowParser)
+    }
 }

@@ -14,7 +14,11 @@ class ProductService extends TProductService {
     productModel.getByRef(ref)
   }
 
-  override def getCatalog(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
-    productModel.getCatalog(page, pageSize, productType)
+  override def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
+    productModel.getNewArrivals(page, pageSize, productType);
+  }
+
+  override def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
+    productModel.getBestSeller(page, pageSize, productType);
   }
 }

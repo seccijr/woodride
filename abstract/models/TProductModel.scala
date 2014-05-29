@@ -1,6 +1,7 @@
 package models
 
 import types.Product.ProductType
+import java.util.Date
 
 trait  TProductModelComposition {
   val productModel: TProductModel
@@ -9,8 +10,8 @@ trait  TProductModelComposition {
 trait TProductModel {
   def getByName(name: String): TProduct
   def getByRef(ref: String): TProduct
-  def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
   def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
+  def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
 }
 
 trait TProduct {
@@ -22,8 +23,8 @@ trait TProduct {
   val picture: String
   val onSales: Boolean
   val mainPrice: TPrice
-  val costPrice: TPrice
-  def stock: List[TStock]
-  def stock_=(value: List[TStock]): Unit
+  val date: Date
+  def stock: TStock
+  def stock_=(value: TStock): Unit
   def outOfStock: Boolean
 }

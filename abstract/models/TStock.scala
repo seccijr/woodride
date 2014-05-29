@@ -5,7 +5,7 @@ trait TStockModelComposition {
 }
 
 trait TStockModel {
-  def getByProduct(product: TProduct): List[TStock]
+  def getByProduct(product: TProduct): TStock
 }
 
 trait TLot {

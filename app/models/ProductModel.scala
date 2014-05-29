@@ -5,41 +5,58 @@ import types.PriceRel._
 import java.util.Date
 import types.Product.ProductType
 
-case class Product(
-                    ref: String,
-                    sort: String,
-                    name: String,
-                    pattern: String,
-                    color: String,
-                    picture: String,
-                    onSales: Boolean,
-                    mainPrice: TPrice,
-                    costPrice: TPrice
-                    ) extends TProduct {
+class ProductModel extends TProductModel {
   self: TStockModelComposition =>
 
-  private var _stock: List[TStock] = Nil
+  implicit val impStockModel = stockModel
 
-  override def outOfStock: Boolean = {
-    val current = stock reduceLeft  { (sum: Int, e: TStock) =>
-      sum + e.quantity
+  class Product(
+                 ref: String,
+                 sort: String,
+                 name: String,
+                 pattern: String,
+                 color: String,
+                 picture: String,
+                 onSales: Boolean,
+                 mainPrice: TPrice,
+                 date: Date
+                 ) extends TProduct {
+    self: TStockModelComposition =>
+
+    private var _stock: Option[TStock] = None
+
+    override def outOfStock: Boolean = {
+      val stock = _stock.getOrElse(stockModel.getByProduct(this))
+
+      stock.quantity <= 0
     }
 
-    current > 0
+    override def stock_=(value: TStock): Unit = {
+      _stock = Some(value)
+    }
+
+    override def stock: TStock = {
+      _stock.getOrElse(stockModel.getByProduct(this))
+    }
   }
 
-  override def stock_=(value: List[TStock]): Unit = {
-    _stock = value
+  object Product {
+    def apply (
+                ref: String,
+                sort: String,
+                name: String,
+                pattern: String,
+                color: String,
+                picture: String,
+                onSales: Boolean,
+                mainPrice: TPrice,
+                date: Date
+                ): Product = {
+      new Product(ref, sort, name, pattern, color, picture, onSales, mainPrice, date) with TStockModelComposition {
+        val stockModel = implicitly[TStockModel]
+      }
+    }
   }
-
-  override def stock: List[TStock] = {
-    if (_stock.isEmpty) _stock = stockModel.getByProduct(this)
-    _stock
-  }
-}
-
-class ProductModel extends TProductModel {
-  import models.PriceModelImplicits._
 
   val productRowDef = s"""
     n.ref,
@@ -48,28 +65,21 @@ class ProductModel extends TProductModel {
     n.pattern,
     n.color,
     n.picture,
-    p1.value,
-    p1.currency,
-    type(r1) as price1Type,
-    r1.date,
-    p2.value,
-    p2.currency,
-    type(r2) as price2Type,
-    r2.date
+    n.date,
+    p.value,
+    p.currency,
+    type(r) as priceType,
+    r.date
     """.stripMargin
 
   def productRowParser(row: CypherResultRow): TProduct = {
+    import models.PriceModelImplicits._
+
     val mainPrice: TPrice = Price(
-      row[Double]("p1.value"),
-      row[String]("p1.currency"),
-      row[PriceRelType]("price1Type"),
-      row[Date]("r1.date")
-    )
-    val costPrice: TPrice = Price(
-      row[Double]("p2.value"),
-      row[String]("p2.currency"),
-      row[PriceRelType]("price2Type"),
-      row[Date]("r2.date")
+      row[Double]("p.value"),
+      row[String]("p.currency"),
+      row[PriceRelType]("priceType"),
+      row[Date]("r.date")
     )
 
     Product(
@@ -81,17 +91,17 @@ class ProductModel extends TProductModel {
       row[String]("n.picture"),
       row[Boolean]("n.onSales"),
       mainPrice,
-      costPrice
+      row[Date]("n.date")
     )
   }
 
   override def getByName(name: String): TProduct = {
     Cypher(
       s"""
-        |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {name: {name}})
-        |WITH p1, r1 ORDER BY r1.date DESC LIMIT 1
-        |MATCH (p2:Price)-[r2:COST_PRICE]->(n)
-        |WITH p1, p2, r1, r2, n ORDER BY r1.date DESC LIMIT 1
+        |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {name: {name}})
+        |WITH r ORDER BY r.date DESC LIMIT 1
+        |MATCH (n:Product)
+        |WITH n, r, p
         |RETURN ${productRowDef}
       """.stripMargin)
       .on("name" -> name)().map(productRowParser).head
@@ -100,36 +110,44 @@ class ProductModel extends TProductModel {
   override def getByRef(ref: String): TProduct = {
     Cypher(
       s"""
-        |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {ref: {ref}})
-        |WITH p1, r1 ORDER BY r1.date DESC LIMIT 1
-        |MATCH (p2:Price)-[r2:COST_PRICE]->(n)
-        |WITH p1, p2, r1, r2, n ORDER BY r1.date DESC LIMIT 1
+        |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {ref: {ref}})
+        |WITH r ORDER BY r.date DESC LIMIT 1
+        |MATCH (n:Product)
+        |WITH n, r, p
         |RETURN ${productRowDef}
       """.stripMargin)
       .on("ref" -> ref)().map(productRowParser).head
   }
 
-  override def getNewArrivals(page: Int, pageSize: Int, productTpe: ProductType): List[TProduct] = {
+  override def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {sort: {sort}})
-        |WITH p1, r1 ORDER BY r1.date DESC LIMIT 1
-        |MATCH (p2:Price)-[r2:COST_PRICE]->(n)
-        |WITH p1, p2, r1, r2, n ORDER BY r1.date DESC LIMIT 1
+        |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {sort: {sort}})
+        |WITH r ORDER BY r.date DESC LIMIT 1
+        |MATCH (n:Product)
+        |WITH n, r, p
         |RETURN ${productRowDef}
+        |ORDER BY n.date DESC
+        |SKIP {skip}
+        |LIMIT {limit}
       """.stripMargin)
-      .on("sort" -> productTpe.toString)().toList.map(productRowParser)
+      .on("limit" -> pageSize, "skip" -> (page - 1) * pageSize, "sort" -> productType.toString)()
+      .toList.map(productRowParser)
   }
 
-    override def getBestSeller(page: Int, pageSize: Int, productTpe: ProductType): List[TProduct] = {
+    override def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
       Cypher(
         s"""
-        |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {sort: {sort}})
-        |WITH p1, r1 ORDER BY r1.date DESC LIMIT 1
-        |MATCH (p2:Price)-[r2:COST_PRICE]->(n)
-        |WITH p1, p2, r1, r2, n ORDER BY r1.date DESC LIMIT 1
-        |RETURN ${productRowDef}
+        |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {sort: {sort}})
+        |WITH p, r ORDER BY r.date DESC LIMIT 1
+        |MATCH (n)-[:OBJECT_OF]->(s:Sale)
+        |WITH n, r, p, s
+        |RETURN ${productRowDef}, count(s) as n_sales
+        |ORDER BY n_sales DESC
+        |SKIP {skip}
+        |LIMIT {limit}
       """.stripMargin)
-        .on("sort" -> productTpe.toString)().toList.map(productRowParser)
+        .on("limit" -> pageSize, "skip" -> (page - 1) * pageSize, "sort" -> productType.toString)()
+        .toList.map(productRowParser)
     }
 }

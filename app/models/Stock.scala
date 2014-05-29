@@ -3,6 +3,7 @@ package models
 import org.anormcypher.{CypherResultRow, Cypher}
 import types.PriceRel.PriceRelType
 import java.util.Date
+import types.PriceRel
 
 case class Lot(
                 location: TLocation,
@@ -10,6 +11,21 @@ case class Lot(
                 quantity: Int,
                 costPrice: TPrice
                 ) extends TLot
+
+case class Stock (
+                   lots: List[TLot]
+                   ) extends TStock {
+  override def averageCost: TPrice = {
+    val total = lots.foldLeft(0.0) { (sum:Double, e:TLot) =>
+      sum + e.costPrice.value
+    }
+    val currency = lots.head.costPrice.currency
+
+    Price(total / quantity, currency, PriceRel.COST_PRICE, new Date)
+  }
+
+  override def quantity: Int = lots.length
+}
 
 class StockModel extends TStockModel {
   val lotRowDef = s"""
@@ -20,6 +36,8 @@ class StockModel extends TStockModel {
     """.stripMargin
 
   def lotRowParser(row: CypherResultRow): TLot= {
+    import models.PriceModelImplicits._
+
     val costPrice: TPrice = Price(
       row[Double]("p.value"),
       row[String]("p.currency"),
@@ -35,11 +53,8 @@ class StockModel extends TStockModel {
     )
   }
 
-  def stockFactory(lots: List[TLot]): TStock = {
-  }
-
-  override def getByProduct(product: TProduct): List[TStock] = {
-    Cypher(
+  override def getByProduct(product: TProduct): TStock = {
+    val lots: List[TLot] = Cypher(
       s"""
         |MATCH (p1:Price)-[r1:MAIN_PRICE]->(n:Product {sort: {sort}})
         |WITH p1, r1 ORDER BY r1.date DESC LIMIT 1
@@ -47,6 +62,9 @@ class StockModel extends TStockModel {
         |WITH p1, p2, r1, r2, n ORDER BY r1.date DESC LIMIT 1
         |RETURN ${lotRowDef}
       """.stripMargin)
-      .on("sort" -> productTpe.toString)().toList.map(lotRowParser)
+      .on("sort" -> "some")()
+      .toList.map(lotRowParser)
+
+    Stock(lots)
   }
 }

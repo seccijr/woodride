@@ -1,20 +1,14 @@
 package models
 
-import org.anormcypher.{CypherResultRow, Cypher}
+import org.anormcypher._
 import types.PriceRel.PriceRelType
 import java.util.Date
 import types.PriceRel
+import play.api.libs.json._
 
-case class Lot(
-                location: TLocation,
-                number: Int,
-                quantity: Int,
-                costPrice: TPrice
-                ) extends TLot
+case class Lot(location: TLocation, number: Int, quantity: Int, costPrice: TPrice) extends TLot
 
-case class Stock (
-                   lots: List[TLot]
-                   ) extends TStock {
+case class Stock (lots: List[TLot]) extends TStock {
   override def averageCost: TPrice = {
     val total = lots.foldLeft(0.0) { (sum:Double, e:TLot) =>
       sum + e.costPrice.value
@@ -25,6 +19,18 @@ case class Stock (
   }
 
   override def quantity: Int = lots.length
+}
+
+object StockModelImplicits {
+  implicit val rowToLocation = Column.nonNull[TLocation] {
+    (value, meta) => {
+      val json: JsValue = Json.parse(value.toString)
+      json.validate[Location] match {
+        case s: JsSuccess[Location] => Right(s.get)
+        case x => Left(TypeDoesNotMatch(s"Cannot convert $x: ${x.getClass} to String for column ${meta.column}"))
+      }
+    }
+  }
 }
 
 class StockModel extends TStockModel {

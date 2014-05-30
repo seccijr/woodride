@@ -10,17 +10,8 @@ class ProductModel extends TProductModel {
 
   implicit val impStockModel = stockModel
 
-  class Product(
-                 ref: String,
-                 sort: String,
-                 name: String,
-                 pattern: String,
-                 color: String,
-                 picture: String,
-                 onSales: Boolean,
-                 mainPrice: TPrice,
-                 date: Date
-                 ) extends TProduct {
+  class Product(ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
+                onSales: Boolean, mainPrice: TPrice, date: Date) extends TProduct {
     self: TStockModelComposition =>
 
     private var _stock: Option[TStock] = None
@@ -41,17 +32,8 @@ class ProductModel extends TProductModel {
   }
 
   object Product {
-    def apply (
-                ref: String,
-                sort: String,
-                name: String,
-                pattern: String,
-                color: String,
-                picture: String,
-                onSales: Boolean,
-                mainPrice: TPrice,
-                date: Date
-                ): Product = {
+    def apply (ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
+                onSales: Boolean, mainPrice: TPrice, date: Date): Product = {
       new Product(ref, sort, name, pattern, color, picture, onSales, mainPrice, date) with TStockModelComposition {
         val stockModel = implicitly[TStockModel]
       }

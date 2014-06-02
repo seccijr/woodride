@@ -9,10 +9,12 @@ trait TStockModel {
 }
 
 trait TLot {
-  val location: TLocation
+  val location: List[TLocation]
   val number: Int
-  val quantity: Int
   val costPrice: TPrice
+  def quantity: Int
+  def locations: List[TLocation]
+  def locations_=(value: List[TLocation]): Unit
 }
 
 trait TStock {

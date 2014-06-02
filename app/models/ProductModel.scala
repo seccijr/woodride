@@ -5,37 +5,35 @@ import types.PriceRel._
 import java.util.Date
 import types.Product.ProductType
 
+class Product(ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
+              onSales: Boolean, mainPrice: TPrice, date: Date) extends TProduct {
+  self: TStockModelComposition =>
+
+  private var _stock: Option[TStock] = None
+
+  override def outOfStock: Boolean = {
+    val stock = _stock.getOrElse(stockModel.getByProduct(this))
+
+    stock.quantity <= 0
+  }
+
+  override def stock_=(value: TStock): Unit = {
+    _stock = Some(value)
+  }
+
+  override def stock: TStock = {
+    _stock.getOrElse(stockModel.getByProduct(this))
+  }
+}
+
 class ProductModel extends TProductModel {
   self: TStockModelComposition =>
 
-  implicit val impStockModel = stockModel
-
-  class Product(ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
-                onSales: Boolean, mainPrice: TPrice, date: Date) extends TProduct {
-    self: TStockModelComposition =>
-
-    private var _stock: Option[TStock] = None
-
-    override def outOfStock: Boolean = {
-      val stock = _stock.getOrElse(stockModel.getByProduct(this))
-
-      stock.quantity <= 0
-    }
-
-    override def stock_=(value: TStock): Unit = {
-      _stock = Some(value)
-    }
-
-    override def stock: TStock = {
-      _stock.getOrElse(stockModel.getByProduct(this))
-    }
-  }
-
   object Product {
     def apply (ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
-                onSales: Boolean, mainPrice: TPrice, date: Date): Product = {
+               onSales: Boolean, mainPrice: TPrice, date: Date): Product = {
       new Product(ref, sort, name, pattern, color, picture, onSales, mainPrice, date) with TStockModelComposition {
-        val stockModel = implicitly[TStockModel]
+        val stockModel = stockModel
       }
     }
   }
@@ -117,9 +115,9 @@ class ProductModel extends TProductModel {
       .toList.map(productRowParser)
   }
 
-    override def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
-      Cypher(
-        s"""
+  override def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
+    Cypher(
+      s"""
         |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {sort: {sort}})
         |WITH p, r ORDER BY r.date DESC LIMIT 1
         |MATCH (n)-[:OBJECT_OF]->(s:Sale)
@@ -129,7 +127,7 @@ class ProductModel extends TProductModel {
         |SKIP {skip}
         |LIMIT {limit}
       """.stripMargin)
-        .on("limit" -> pageSize, "skip" -> (page - 1) * pageSize, "sort" -> productType.toString)()
-        .toList.map(productRowParser)
-    }
+      .on("limit" -> pageSize, "skip" -> (page - 1) * pageSize, "sort" -> productType.toString)()
+      .toList.map(productRowParser)
+  }
 }

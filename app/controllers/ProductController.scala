@@ -8,16 +8,18 @@ import services.TProductServiceComposition
 class ProductController extends TProductController {
   self: TProductServiceComposition =>
 
-  def catalog(page: Option[Int], pageSize: Option[Int]) = Action {
+  def catalog(pageParam: Option[Int], pageSizeParam: Option[Int]) = Action {
     val defaultPageSize = Play.current.configuration.getString("page.pageSize")
-    val newArrivals = productService.getNewArrivals(page.getOrElse[Int](1), pageSize.getOrElse[Int](defaultPageSize.get.toInt), SHIRT)
-    val bestSeller = productService.getBestSeller(page.getOrElse[Int](1), pageSize.getOrElse[Int](defaultPageSize.get.toInt), SHIRT)
+    val page = pageParam.getOrElse[Int](1)
+    val pageSize = pageSizeParam.getOrElse[Int](defaultPageSize.get.toInt)
+    val newArrivals = productService.getNewArrivals(page, pageSize, SHIRT)
+    val bestSeller = productService.getBestSeller(page, pageSize, SHIRT)
 
     Ok(views.html.product.catalog(newArrivals, bestSeller))
   }
 
-  def details(ref: String) = Action {
-    val product = productService.getByRef(ref)
+  def details(refParam: String) = Action {
+    val product = productService.getByRef(refParam)
     Ok(views.html.product.detail(product))
   }
 }

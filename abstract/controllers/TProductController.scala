@@ -3,6 +3,6 @@ package controllers
 import play.api.mvc.{AnyContent, Action, Controller}
 
 trait TProductController extends Controller {
-  def catalog(page: Option[Int], pageSize: Option[Int]): Action[AnyContent]
-  def details(ref: String): Action[AnyContent]
+  def catalog(pageParam: Option[Int], pageSizeParam: Option[Int]): Action[AnyContent]
+  def details(refParam: String): Action[AnyContent]
 }

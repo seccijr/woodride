@@ -2,17 +2,14 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Test page
-GET        /test/product/:ref   @controllers.TTestController.product(ref)
-
 # Home page
 GET        /                    @controllers.TApplicationController.index
 
 # Products page
-GET        /catalog             @controllers.TProductController.catalog(page: Option[Int], pageSize: Option[Int])
+GET        /catalog             @controllers.TProductController.catalog(pageParam: Option[Int], pageSizeParam: Option[Int])
 
 # Details page
-GET        /product/:ref        @controllers.TProductController.details(ref)
+GET        /product/:refParam   @controllers.TProductController.details(refParam: String)
 
 # About page
 GET        /about               @controllers.TApplicationController.about

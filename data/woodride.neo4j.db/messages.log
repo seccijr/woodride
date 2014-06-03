@@ -8544,3 +8544,4 @@ Storage files: (filename : modification date - size)
 2014-06-03 06:21:47.693+0000 INFO  [o.n.k.i.DiagnosticsManager]: Mounted Neo4j Browser at: /browser
 2014-06-03 06:21:50.706+0000 INFO  [o.n.k.i.DiagnosticsManager]: Server started on: http://localhost:7474/
 2014-06-03 06:21:50.708+0000 INFO  [o.n.k.i.DiagnosticsManager]: --- SERVER STARTED END ---
+2014-06-03 10:10:18.735+0000 WARN  [o.n.k.EmbeddedGraphDatabase]: GC Monitor: Application threads blocked for an additional 827ms [total block time: 0.827s]

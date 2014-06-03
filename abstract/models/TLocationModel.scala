@@ -16,3 +16,20 @@ trait TLocation {
   val city: TCity
   val country: TCountry
 }
+
+trait TCountryModel {
+  def getByName(name: String): TCountry
+}
+
+trait TCountry {
+  val name: String
+}
+
+trait TCity {
+  val name: String
+}
+
+trait TStreet {
+  val name: String
+  val streetType: String
+}

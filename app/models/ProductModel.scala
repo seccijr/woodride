@@ -5,8 +5,8 @@ import types.PriceRel._
 import java.util.Date
 import types.Product.ProductType
 
-class Product(ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
-              onSales: Boolean, mainPrice: TPrice, date: Date) extends TProduct {
+class Product(val ref: String, val sort: String, val name: String, val pattern: String, val color: String,
+              val picture: String, val onSales: Boolean, val mainPrice: TPrice, val date: Date) extends TProduct {
   self: TStockModelComposition =>
 
   private var _stock: Option[TStock] = None
@@ -28,12 +28,13 @@ class Product(ref: String, sort: String, name: String, pattern: String, color: S
 
 class ProductModel extends TProductModel {
   self: TStockModelComposition =>
+  implicit val impStockModel = stockModel
 
   object Product {
     def apply (ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
-               onSales: Boolean, mainPrice: TPrice, date: Date): Product = {
+               onSales: Boolean, mainPrice: TPrice, date: Date): TProduct = {
       new Product(ref, sort, name, pattern, color, picture, onSales, mainPrice, date) with TStockModelComposition {
-        val stockModel = stockModel
+        val stockModel = implicitly[TStockModel]
       }
     }
   }

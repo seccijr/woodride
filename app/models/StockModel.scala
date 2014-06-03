@@ -4,19 +4,19 @@ import org.anormcypher._
 import types.PriceRel.PriceRelType
 import java.util.Date
 import types.PriceRel
-import play.api.libs.json._
 
-class Lot(number: Int, quantity: Int, costPrice: TPrice) extends TLot {
+class Lot(val number: Int, val quantity: Int, val costPrice: TPrice) extends TLot {
   self: TLocationModelComposition =>
 
   private var _locations: List[TLocation] = Nil
 
   override def locations: List[TLocation] = {
-
+    if (_locations.isEmpty) _locations = locationModel.getByLot(this)
+    _locations
   }
 
   override def locations_=(value: List[TLocation]): Unit = {
-
+    _locations = value
   }
 }
 
@@ -34,6 +34,18 @@ case class Stock (lots: List[TLot]) extends TStock {
 }
 
 class StockModel extends TStockModel {
+  self: TLocationModelComposition =>
+
+  implicit val impLocationModel = locationModel
+
+  object Lot {
+    def apply (number: Int, quantity: Int, costPrice: TPrice): TLot = {
+      new Lot(number, quantity, costPrice) with TLocationModelComposition {
+        val locationModel = implicitly[TLocationModel]
+      }
+    }
+  }
+
   val lotRowDef = s"""
     lot.number,
     lot.quantity,

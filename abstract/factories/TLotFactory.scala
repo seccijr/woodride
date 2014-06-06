@@ -7,6 +7,6 @@ trait TLotFactoryComposition {
 }
 
 trait TLotFactory {
-  def apply (number: Int, quantity: Int, costPrice: TPrice): TLot
+  def apply (number: Int, costPrice: TPrice): TLot
 }
 

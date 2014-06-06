@@ -1,6 +1,6 @@
 package factories
 
-import models.{TPrice, TProduct}
+import models.{TStockModel, TPrice, TProduct}
 import java.util.Date
 
 trait TProductFactoryComposition {

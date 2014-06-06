@@ -459,7 +459,7 @@ h4.style{
 }
 /* start grids_of_3 */
 .grids_of_3{
-	text-align:center;
+	text-align:right;
 	display: block;
 }
 .grid1_of_3{
@@ -1747,7 +1747,7 @@ span.color7{
 	padding: 0 40px;
 	float: left;
 	display: block;
-	width: 23.1%;
+	width: 22.5%;
 	color:#999999;
 	font-weight: normal;
 	text-transform: capitalize;

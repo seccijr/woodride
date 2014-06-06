@@ -3,10 +3,10 @@
 <div class="grids_of_@products.length">
     @for(product <- products) {
         <div class="grid1_of_@products.length">
-            <a href="details.html">
-                <img src="@controllers.routes.Assets.at("images/products/" concat product.picture)" alt="">
-                <h3>even &amp; odd</h3>
-                <span class="price">@product</span>
+            <a href="/product/@product.ref">
+                <img src="@controllers.routes.Assets.at("images/product/" concat product.picture)" alt="">
+                <h3>@product.name</h3>
+                <span class="price">@product.mainPrice.value @product.mainPrice.currency</span>
                 @if(product.outOfStock) {
                     <span class="price1 bg1">out of stock</span>
                 }

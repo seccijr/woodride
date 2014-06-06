@@ -2,7 +2,7 @@ package models
 
 import java.util.Date
 import types.Product.ProductType
-import repo.TProductRepositoryComposition
+import repositories.TProductRepositoryComposition
 
 class Product(val ref: String, val sort: String, val name: String, val pattern: String, val color: String,
               val picture: String, val onSales: Boolean, val mainPrice: TPrice, val date: Date) extends TProduct {

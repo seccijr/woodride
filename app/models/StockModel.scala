@@ -2,24 +2,10 @@ package models
 
 import java.util.Date
 import types.PriceRel
-import repo.TLotRepositoryComposition
+import repositories.TLotRepositoryComposition
+import factories.TStockFactoryComposition
 
-class Lot(val number: Int, val quantity: Int, val costPrice: TPrice) extends TLot {
-  self: TLocationModelComposition =>
-
-  private var _locations: List[TLocation] = Nil
-
-  override def locations: List[TLocation] = {
-    if (_locations.isEmpty) _locations = locationModel.getByLot(this)
-    _locations
-  }
-
-  override def locations_=(value: List[TLocation]): Unit = {
-    _locations = value
-  }
-}
-
-case class Stock(lots: List[TLot]) extends TStock {
+class Stock(val lots: List[TLot]) extends TStock {
   override def averageCost: TPrice = {
     val total = lots.foldLeft(0.0) { (sum:Double, e:TLot) =>
       sum + e.costPrice.value
@@ -33,10 +19,10 @@ case class Stock(lots: List[TLot]) extends TStock {
 }
 
 class StockModel extends TStockModel {
-  self: TLotRepositoryComposition =>
+  self: TLotRepositoryComposition with TStockFactoryComposition =>
 
   override def getByProduct(product: TProduct): TStock = {
     val lots = lotRepository.getByProduct(product)
-    Stock(lots)
+    stockFactory(lots)
   }
 }

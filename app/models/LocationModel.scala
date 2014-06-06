@@ -1,6 +1,6 @@
 package models
 
-import repo.TLocationRepositoryComposition
+import repositories.TLocationRepositoryComposition
 
 case class Country (name: String) extends TCountry
 case class City (name: String) extends TCity

@@ -7,7 +7,7 @@ import factories.TStockFactoryComposition
 
 class Stock(val lots: List[TLot]) extends TStock {
   override def averageCost: TPrice = {
-    val total = lots.foldLeft(0.0) { (sum:Double, e:TLot) =>
+    val total = lots.foldLeft(0.0) { (sum: Double, e: TLot) =>
       sum + e.costPrice.value
     }
     val currency = lots.head.costPrice.currency

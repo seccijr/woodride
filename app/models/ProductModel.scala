@@ -9,34 +9,40 @@ class Product(val ref: String, val sort: String, val name: String, val pattern: 
   self: TStockModelComposition =>
 
   private var _stock: Option[TStock] = None
+  private var _stockLoaded: Boolean = false
 
-  private def loadStock: TStock = {
-    val stock = stockModel.getByProduct(this)
-    _stock = Some(stock)
-    stock
+  private def getStock: Option[TStock] = {
+    if (!_stockLoaded) {
+      _stock = stockModel.getByProduct(this)
+      _stockLoaded = true
+    }
+    _stock
   }
 
   override def outOfStock: Boolean = {
-    _stock.getOrElse(loadStock).quantity <= 0
+    getStock match {
+      case Some(s) => s.quantity <= 0
+      case None => false
+    }
   }
 
-  override def stock_=(value: TStock): Unit = {
-    _stock = Some(value)
+  override def stock_=(value: Option[TStock]): Unit = {
+    _stock = value
   }
 
-  override def stock: TStock = {
-    _stock.getOrElse(loadStock)
+  override def stock: Option[TStock] = {
+    getStock
   }
 }
 
 class ProductModel extends TProductModel {
   self: TProductRepositoryComposition =>
 
-  override def getByName(name: String): TProduct = {
+  override def getByName(name: String): Option[TProduct] = {
     productRepository.getByName(name)
   }
 
-  override def getByRef(ref: String): TProduct = {
+  override def getByRef(ref: String): Option[TProduct] = {
     productRepository.getByRef(ref)
   }
 

@@ -18,7 +18,7 @@ trait TLocation {
 }
 
 trait TCountryModel {
-  def getByName(name: String): TCountry
+  def getByName(name: String): Option[TCountry]
 }
 
 trait TCountry {

@@ -7,6 +7,8 @@ import java.util.Date
 
 case class Price(value: Double, currency: String, relType: PriceRelType, date: Date) extends TPrice
 
+
+
 object PriceModelImplicits {
   implicit val rowToPriceRelType = Column.nonNull[PriceRelType] {
     (value, meta) => {

@@ -8,8 +8,8 @@ trait  TProductModelComposition {
 }
 
 trait TProductModel {
-  def getByName(name: String): TProduct
-  def getByRef(ref: String): TProduct
+  def getByName(name: String): Option[TProduct]
+  def getByRef(ref: String): Option[TProduct]
   def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
   def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct]
 }
@@ -24,7 +24,7 @@ trait TProduct {
   val onSales: Boolean
   val mainPrice: TPrice
   val date: Date
-  def stock: TStock
-  def stock_=(value: TStock): Unit
+  def stock: Option[TStock]
+  def stock_=(value: Option[TStock]): Unit
   def outOfStock: Boolean
 }

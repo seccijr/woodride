@@ -19,8 +19,10 @@ class ProductController extends TProductController {
   }
 
   def details(refParam: String) = Action {
-    val product = productService.getByRef(refParam)
-    Ok(views.html.product.detail(product))
+    productService.getByRef(refParam) match {
+      case Some(product) => Ok(views.html.product.detail(product))
+      case None => NotFound
+    }
   }
 }
 

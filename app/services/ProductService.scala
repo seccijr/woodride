@@ -6,11 +6,11 @@ import types.Product.ProductType
 class ProductService extends TProductService {
   self: TProductModelComposition =>
 
-  override def getByName(name: String): TProduct = {
+  override def getByName(name: String): Option[TProduct] = {
     productModel.getByName(name)
   }
 
-  override def getByRef(ref: String): TProduct = {
+  override def getByRef(ref: String): Option[TProduct] = {
     productModel.getByRef(ref)
   }
 

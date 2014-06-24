@@ -15,7 +15,7 @@ class LotRepository extends TLotRepository {
     price.currency,
     type(r) as priceType,
     r.date
-      """.stripMargin
+    """.stripMargin
 
   def lotRowParser(row: CypherResultRow): TLot = {
     import models.PriceModelImplicits._

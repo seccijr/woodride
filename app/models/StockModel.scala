@@ -21,8 +21,8 @@ class Stock(val lots: List[TLot]) extends TStock {
 class StockModel extends TStockModel {
   self: TLotRepositoryComposition with TStockFactoryComposition =>
 
-  override def getByProduct(product: TProduct): TStock = {
+  override def getByProduct(product: TProduct): Option[TStock] = {
     val lots = lotRepository.getByProduct(product)
-    stockFactory(lots)
+    Some(stockFactory(lots))
   }
 }

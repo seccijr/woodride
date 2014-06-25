@@ -1,11 +1,10 @@
 package services
 
 import models.TUserModelComposition
-import play.api.Application
-import securesocial.core.{Identity, IdentityId, UserServicePlugin}
+import securesocial.core.{Identity, IdentityId, UserService => SecureSocialUserService}
 import securesocial.core.providers.Token
 
-class UserService(application: Application) extends UserServicePlugin(application) {
+class UserService extends SecureSocialUserService {
   self: TUserModelComposition =>
 
   def find(id: IdentityId):Option[Identity] = {
@@ -16,7 +15,8 @@ class UserService(application: Application) extends UserServicePlugin(applicatio
     userModel.getByEmailAndProvider(email, providerId)
   }
 
-  def save(user: Identity) {
+  def save(user: Identity): Identity = {
+    user
   }
 
   def save(token: Token) = {

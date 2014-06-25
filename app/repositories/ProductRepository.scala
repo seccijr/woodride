@@ -48,24 +48,24 @@ class ProductRepository extends TProductRepository {
     )
   }
 
-  override def getByName(name: String): TProduct = {
+  override def getByName(name: String): Option[TProduct] = {
     Cypher(
       s"""
         |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {name: {name}})
         |RETURN ${productRowDef}
         |ORDER BY r.date DESC LIMIT 1
       """.stripMargin)
-      .on("name" -> name)().map(productRowParser).head
+      .on("name" -> name)().headOption.map(productRowParser)
   }
 
-  override def getByRef(ref: String): TProduct = {
+  override def getByRef(ref: String): Option[TProduct] = {
     Cypher(
       s"""
         |MATCH (p:Price)<-[r:MAIN_PRICE]-(n:Product {ref: {ref}})
         |RETURN ${productRowDef}
         |ORDER BY r.date DESC LIMIT 1
       """.stripMargin)
-      .on("ref" -> ref)().map(productRowParser).head
+      .on("ref" -> ref)().headOption.map(productRowParser)
   }
 
   override def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {

@@ -10,7 +10,6 @@ trait TUserModelComposition {
 trait TIdentityNames {
   val firstName: String
   val lastName: String
-  val fullName: String
   val email: Option[String]
   val avatarUrl: Option[String]
 }

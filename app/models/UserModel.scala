@@ -4,7 +4,7 @@ import repositories.{TTokenRepositoryComposition, TUserRepositoryComposition}
 import securesocial.core.providers.Token
 import securesocial.core._
 
-case class IdentityNames (firstName: String, lastName: String, fullName:String, email: Option[String] = None,
+case class IdentityNames (firstName: String, lastName: String, email: Option[String] = None,
                           avatarUrl: Option[String] = None) extends TIdentityNames
 
 
@@ -13,7 +13,7 @@ case class User (identityId: IdentityId, identityNames: TIdentityNames, authMeth
                  passwordInfo: Option[PasswordInfo] = None) extends Identity {
   override val lastName: String = identityNames.lastName
 
-  override val fullName: String = identityNames.fullName
+  override val fullName: String = identityNames.lastName + ", " + identityNames.firstName
 
   override val avatarUrl: Option[String] = identityNames.avatarUrl
 

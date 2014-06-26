@@ -6,52 +6,63 @@
 @import securesocial.core.providers.UsernamePasswordProvider.UsernamePassword
 
 @main(Messages("securesocial.login.title")) {
-    <div class="page-header">
-        <h1>@Messages("securesocial.login.title")</h1>
+<div class="top_bg">
+    <div class="wrap">
+        <div class="main_top">
+            <h2 class="style">@Messages("securesocial.login.title")</h2>
+        </div>
     </div>
-
-    @errorMsg.map { msg =>
-        <div class="alert alert-error">
-            @Messages(msg)
-        </div>
-    }
-
-    @request.flash.get("success").map { msg =>
-        <div class="alert alert-info">
-            @msg
-        </div>
-    }
-
-    @request.flash.get("error").map { msg =>
-        <div class="alert alert-error">
-            @msg
-        </div>
-    }
-
-
-    @defining( Registry.providers.all.values.filter( _.id != UsernamePassword) ) { externalProviders =>
-
-        @if( externalProviders.size > 0 ) {
-            <div class="clearfix">
-                <p>@Messages("securesocial.login.instructions")</p>
-                <p>
-                    @for(p <- externalProviders) {
-                        @securesocial.views.html.provider(p.id)
-                    }
-                </p>
+</div>
+<div class="main_bg">
+    <div class="wrap">
+        @errorMsg.map { msg =>
+            <div class="alert alert-error">
+                @Messages(msg)
             </div>
         }
 
-        @Registry.providers.get(UsernamePassword).map { up =>
-            <div class="clearfix">
+        @request.flash.get("success").map { msg =>
+            <div class="alert alert-info">
+                @msg
+            </div>
+        }
+
+        @request.flash.get("error").map { msg =>
+            <div class="alert alert-error">
+                @msg
+            </div>
+        }
+        <div class="main">
+            @defining( Registry.providers.all.values.filter( _.id != UsernamePassword) ) { externalProviders =>
+
                 @if( externalProviders.size > 0 ) {
-                    <p>@Messages("securesocial.login.useEmailAndPassword")</p>
-                } else {
-                    <p>@Messages("securesocial.login.useEmailAndPasswordOnly")</p>
+                    <div class="top_main">
+                        <h2>@Messages("securesocial.login.instructions")</h2>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clearfix">
+                        <p>
+                            @for(p <- externalProviders) {
+                                @securesocial.views.html.provider(p.id)
+                            }
+                        </p>
+                    </div>
                 }
 
-                @securesocial.views.html.provider("userpass", Some(loginForm))
-            </div>
-        }
-    }
+                @Registry.providers.get(UsernamePassword).map { up =>
+                    <div class="clearfix">
+                        @if( externalProviders.size > 0 ) {
+                            <p>@Messages("securesocial.login.useEmailAndPassword")</p>
+                        } else {
+                            <p>@Messages("securesocial.login.useEmailAndPasswordOnly")</p>
+                        }
+
+                        @securesocial.views.html.provider("userpass", Some(loginForm))
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/views/product/catalog.js")"></script>
 }

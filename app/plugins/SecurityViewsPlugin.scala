@@ -11,7 +11,7 @@ import securesocial.core.{SecuredRequest, Identity}
 
 class SecurityViewsPlugin(application: Application) extends TemplatesPlugin {
   override def getLoginPage[A](implicit request: Request[A], form: Form[(String, String)], msg: Option[String]): Html = {
-     views.html.secutiry.login(form, msg)
+     views.html.security.login(form, msg)
   }
 
   override def getSignUpEmail(token: String)(implicit request: RequestHeader): (Option[Txt], Option[Html]) = ???

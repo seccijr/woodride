@@ -28,7 +28,9 @@ class SecurityViewsPlugin(application: Application) extends TemplatesPlugin {
 
   override def getNotAuthorizedPage[A](implicit request: Request[A]): Html = ???
 
-  override def getStartSignUpPage[A](implicit request: Request[A], form: Form[String]): Html = ???
+  override def getStartSignUpPage[A](implicit request: Request[A], form: Form[String]): Html = {
+    securesocial.views.html.Registration.startSignUp(form)
+  }
 
   override def getAlreadyRegisteredEmail(user: Identity)(implicit request: RequestHeader): (Option[Txt], Option[Html]) = ???
 

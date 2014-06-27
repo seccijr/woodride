@@ -29,8 +29,8 @@ class UserRepository extends TUserRepository {
           authInfo.get("exiration").asInstanceOf[Option[Int]], authInfo.get("refresh"))
         User(identityId, identityNames, authMethod, None, Some(oAuth2))
       }
-      case AuthenticationMethod("password") =>
-        val passwordInfo = PasswordInfo(authInfo.getOrElse("hasher", ""), "", authInfo.get("salt"))
+      case AuthenticationMethod("userpass") =>
+        val passwordInfo = PasswordInfo(authInfo.getOrElse("hasher", ""), authInfo.getOrElse("password", ""), authInfo.get("salt"))
         User(identityId, identityNames, authMethod, None, None, Some(passwordInfo))
       case _ =>
         User(identityId, identityNames, authMethod)

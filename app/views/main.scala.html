@@ -1,5 +1,7 @@
 @(title: String)(content: Html)
 
+@import play.api.Play
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -9,7 +11,6 @@
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500">
         <link type="text/css" rel="stylesheet" href="@controllers.routes.Assets.at("stylesheets/jquery.mmenu.all.css")" media="all" />
         <link type="text/css" rel="stylesheet" href="@controllers.routes.Assets.at("stylesheets/etalage.css")" media="all" />
-        <link type="text/css" rel="stylesheet" href="@controllers.routes.Assets.at("stylesheets/slider.css")" media="all" />
         <link type="text/css" rel="stylesheet" href="@controllers.routes.Assets.at("stylesheets/style.css")" media="all" />
         <script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/common/jquery.min.js")"></script>
         <script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/common/jquery.eislideshow.js")"></script>
@@ -29,8 +30,10 @@
                     <div class="log_reg">
                         <ul>
                             <li><a href="/login">Login</a> </li>
-                            <span class="log"> or </span>
-                            <li><a href="/signup">Register</a> </li>
+                            @if(Play.current.configuration.getBoolean("securesocial.registrationEnabled").getOrElse(false)){
+                                <span class="log"> or </span>
+                                <li><a href="/signup">Register</a> </li>
+                            }
                             <div class="clear"></div>
                         </ul>
                     </div>
@@ -51,9 +54,8 @@
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="/catalog">products</a></li>
                         <li><a href="/about">about</a></li>
-                        <li><a href="/">pages</a></li>
                         <li><a href="/blog">blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="/contact">Contact</a></li>
                         <div class="clear"></div>
                     </ul>
                 </div>

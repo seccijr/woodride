@@ -12,6 +12,10 @@ class ApplicationController extends TApplicationController {
     Ok(views.html.page.about("Acerca"))
   }
 
+  def contact = Action {
+    Ok(views.html.page.contact("Contacto"))
+  }
+
   def blog = Action {
     Ok(views.html.blog.board("Blog"))
   }

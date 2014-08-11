@@ -14,6 +14,9 @@ GET        /product/:refParam        @controllers.TProductController.details(ref
 # About page
 GET        /about                    @controllers.TApplicationController.about
 
+# Contact page
+GET        /contact                 @controllers.TApplicationController.contact
+
 # Blog page
 GET        /blog                     @controllers.TApplicationController.blog
 

@@ -11,7 +11,7 @@ class UserService extends SecureSocialUserService {
     userModel.getById(id)
   }
 
-  def findByEmailAndProvider(email: String, providerId: String):Option[Identity] = {
+  def findByEmailAndProvider(email: String, providerId: String): Option[Identity] = {
     userModel.getByEmailAndProvider(email, providerId)
   }
 

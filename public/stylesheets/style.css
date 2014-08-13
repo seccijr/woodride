@@ -112,7 +112,7 @@ h4.style{
 	color: #555555;
 	margin: 4% 0;
 }
-.btn form input[type="button"],.registration_form input[type="submit"]{
+.btn input[type="button"],.registration_form input[type="submit"]{
 	font-family: 'Maven Pro', sans-serif;
 	cursor:pointer;
 	background: #242424;
@@ -132,7 +132,7 @@ h4.style{
 	-moz-border-radius: 2px;
 	-o-border-radius: 2px;
 }
-.btn form input[type="button"]:hover,.registration_form input[type="submit"]:hover{
+.btn input[type="button"]:hover,.registration_form input[type="submit"]:hover{
 	background: #00aeef;
 	border: 1px solid #00aeef;
 }
@@ -1691,7 +1691,7 @@ span.color7{
 .btn_form{
 	margin: 4% 0 2%;
 }
-.btn_form form input[type="submit"]{
+.btn_form input[type="button"]{
 	cursor:pointer;
 	display: inline-block;
 	font-family: 'Maven Pro', sans-serif;
@@ -1712,7 +1712,7 @@ span.color7{
 	-moz-border-radius: 2px;
 	-o-border-radius: 2px;
 }
-.btn_form form input[type="submit"]:hover{
+.btn_form input[type="button"]:hover{
 	background: #00aeef;
 	border: 1px solid #00aeef;
 }

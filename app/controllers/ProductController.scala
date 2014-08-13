@@ -1,9 +1,12 @@
 package controllers
 
+import play.api.data._
+import play.api.data.Forms._
 import types.Product._
 import play.api.mvc.Action
 import play.api.Play
 import services.TProductServiceComposition
+import viewmodels.CartProduct
 
 class ProductController extends TProductController {
   self: TProductServiceComposition =>
@@ -20,7 +23,13 @@ class ProductController extends TProductController {
 
   def details(refParam: String) = Action {
     productService.getByRef(refParam) match {
-      case Some(product) => Ok(views.html.product.detail(product))
+      case Some(product) => {
+        val addToCartForm = Form(mapping(
+          "ref" -> text,
+          "quantity" -> number
+        )(CartProduct.apply)(CartProduct.unapply))
+        Ok(views.html.product.detail(product, addToCartForm))
+      }
       case None => NotFound
     }
   }

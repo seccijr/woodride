@@ -7,4 +7,8 @@ $(document).ready(function(){
         source_image_height: 1000,
         zoom_area_width: 725
     });
+
+    $("#confirm-product-dialog-ok").click(function () {
+        $("#product-add-to-cart").click();
+    });
 });

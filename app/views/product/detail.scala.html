@@ -1,4 +1,4 @@
-@(product: TProduct)
+@(product: TProduct, addToCartForm: Form[viewmodels.TCartProduct])
 
 @main("Product: " concat product.name) {
     <div class="top_bg">
@@ -39,9 +39,14 @@
                                 }
                                 <div class="available">
                                     <div class="btn_form">
-                                        <form>
-                                            <input type="submit" value="buy now" title="" />
-                                        </form>
+                                        <input type="button" data-toggle="modal" data-target="#confirm-product-dialog" value="buy now">
+                                        <div class="hidden">
+                                            @helper.form(action = controllers.TApplicationController.addToCartPost) {
+                                                @helper.input(addToCartForm("ref"), 'type -> "hidden", 'value -> product.ref, 'id -> "add-to-cart-ref")
+                                                @helper.input(addToCartForm("quantity"), 'type -> "hidden", 'id -> "add-to-cart-quantity")
+                                                <input type="submit" id="product-add-to-cart"/>
+                                            }
+                                        </div>
                                     </div>
                                     <span><a href="#">login to save in wishlist </a></span>
                                     <p>Short description.</p>
@@ -163,5 +168,20 @@
             </div>
         </div>
     </div>
+    @shop.confirmation("confirm-product-dialog", "Product") {
+        <h4>Text in a modal</h4>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+        <h4>Popover in a modal</h4>
+        <p>This <a href="#" role="button" class="btn btn-default popover-test" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">button</a> should trigger a popover on click.</p>
+
+        <h4>Tooltips in a modal</h4>
+        <p><a href="#" class="tooltip-test" title="" data-original-title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
+
+        <hr>
+
+        <h4>Overflowing text to show scroll behavior</h4>
+        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    }
     <script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/views/product/details.js")"></script>
 }

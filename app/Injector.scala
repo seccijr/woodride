@@ -32,7 +32,12 @@ object Injector {
     val productRepository = injProductRepository
   }
 
-  lazy val applicationController: TApplicationController = new ApplicationController
+  lazy val applicationController: TApplicationController = new ApplicationController with TProductServiceComposition {
+    val productService = new ProductService with TProductModelComposition {
+      val productModel = injProductModel
+    }
+  }
+
   lazy val productController: TProductController = new ProductController with TProductServiceComposition {
     val productService = new ProductService with TProductModelComposition {
       val productModel = injProductModel

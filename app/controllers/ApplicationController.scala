@@ -1,11 +1,17 @@
 package controllers
 
+import types.Product._
 import play.api.mvc.Action
+import play.api.Play
+import services.TProductServiceComposition
 
 class ApplicationController extends TApplicationController {
+  self: TProductServiceComposition =>
 
   def index = Action {
-    Ok(views.html.index("Inicio"))
+    val defaultPageSize = Play.current.configuration.getString("page.pageSize")
+    val newArrivals = productService.getNewArrivals(1, defaultPageSize.get.toInt, SHIRT)
+    Ok(views.html.index(newArrivals))
   }
 
   def about = Action {

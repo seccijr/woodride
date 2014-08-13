@@ -19,7 +19,7 @@
 /* Large thumbnail: */
 #etalage .etalage_thumb{
 	background:url(/assets/images/loading.gif) center no-repeat;
-	border: 1px solid #eee;
+	/*border: 1px solid #eee;*/
 	padding: 6px;
 }
 /* Large thumbnail - image (in case you want to add a border around the image within the frame) */
@@ -89,7 +89,7 @@
 .etalage_right{ float:right }
 .etalage li{ position:absolute }
 .etalage img{ vertical-align:bottom; max-width:none }
-.etalage_magnifier{ cursor:default }
+.etalage_magnifier{ cursor:move}
 .etalage_magnifier div, .etalage_small_thumbs{ overflow:hidden }
 .etalage_magnifier div img{ display:none }
 .etalage_icon, .etalage_hint{ cursor:default; width:0; height:0; overflow:hidden }

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#etalage").etalage({
+        show_icon: false,
         thumb_image_width: 315,
         thumb_image_height: 350,
         source_image_width: 900,

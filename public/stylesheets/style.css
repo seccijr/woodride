@@ -39,7 +39,10 @@ body {
 }
 /* start header */
 .top_bg{
-	background: #242424;
+    background: #242424;
+}
+.sections_bg{
+	background: #fff;
 }
 .header{
 	padding:0  4%;
@@ -239,7 +242,7 @@ h4.style{
 .web_search{
 	position: relative;
 	float:right;
-	width: 28.33333%;
+	width: 300px;
 	border-right: 1px solid rgb(60, 60, 60);
 	padding: 6px 10px;
 }
@@ -266,10 +269,10 @@ h4.style{
 	padding: 8px 20px;
 	outline: none;
 	border: none;
-	width: 76%;
 	background: none;
 	font-size: 1em;
 	color: #333333;
+    width: 220px;
 }
 .web_search:hover input[type="submit"]{
 	background: url(../images/search.png) no-repeat 0px 4px;
@@ -419,7 +422,7 @@ h4.style{
 }
 /* start main */
 .main_bg{
-	background: #EBE7DF;
+	background: #fff;
 }
 .main_top{
 	padding: 2% 4%;
@@ -1531,9 +1534,6 @@ ul.news li .desc h4 a:hover{
     text-transform: uppercase;
     text-shadow: 0 1px 0 #ffffff;
 }
-div.color-list {
-    width: 300px;
-}
 div.color-list div{
     float: left;
     width: 150px;
@@ -1729,7 +1729,6 @@ span.color7{
 .tabs input {
 	position: absolute;
 	z-index: 1000;
-	width: 33.33333%;
 	height: 44px;
 	left: 0px;
 	top: 0px;
@@ -1754,7 +1753,6 @@ span.color7{
 	padding: 0 40px;
 	float: left;
 	display: block;
-	width: 17%;
 	color:#999999;
 	font-weight: normal;
 	text-transform: capitalize;
@@ -1887,13 +1885,6 @@ span.color7{
 	.wrap{
 		width:95%;
 	}
-	.tabs label {
-		width: 16.3333%;
-		font-size: 20px;
-	}
-	.web_search {
-		width: 26.33333%;
-	}
 	ul.news li .desc {
 		width: 78.33333%;
 	}
@@ -1904,9 +1895,6 @@ span.color7{
 @media only screen and (max-width: 1280px) {
 	.wrap{
 		width:95%;
-	}
-	.web_search {
-		width: 30.33333%;
 	}
 	.menu ul li a {
 		padding: 26px 20px;
@@ -1928,10 +1916,6 @@ span.color7{
 		float: right;
 		width: 22.3333%;
 	}
-	.tabs label {
-		width: 16.3333%;
-		font-size: 18px;
-	}
 	.f_search {
 		width: 32.3333%;
 	}
@@ -1940,21 +1924,14 @@ span.color7{
 	}
 }
 @media only screen and (max-width: 1024px) {
+    .tabs label {
+        font-size: 14px;
+    }
 	.span1_of_1_des {
 	    width: 97.3333%;
 	}
-	.tabs label {
-		width: 16.3333%;
-		font-size: 16px;
-	}
 	.wrap{
 		width:95%;
-	}
-	.web_search {
-		width: 34.33333%;
-	}
-	.web_search input[type="text"] {
-		width: 74%;
 	}
 	.menu ul li a {
 		padding: 26px 15px;
@@ -1988,15 +1965,11 @@ span.color7{
 	}
 }
 @media only screen and (max-width: 800px) {
+    .web_search {
+        display: none;
+    }
 	.wrap{
 		width:95%;
-	}
-	.web_search input[type="text"] {
-		width: 68.33333%;
-	}
-	.tabs label {
-		width: 14.3333%;
-		font-size: 16px;
 	}
 	.menu {
 		display: none;
@@ -2115,10 +2088,10 @@ span.color7{
 	}
 }
 @media only screen and (max-width: 640px){
-	.tabs label {
-		width: 13.3333%;
-		font-size: 14px;
-	}
+    .tabs label {
+        padding: 0px;
+        width: 100%;
+    }
 	.wrap{
 		width:95%;
 	}
@@ -2128,9 +2101,6 @@ span.color7{
 	.span1_of_1_des {
 		margin-top: 8%;
 	    width: 97.3333%;
-	}
-	.web_search input[type="text"] {
-		width: 62.33333%;
 	}
 	.menu ul li a {
 		padding: 26px 8px;
@@ -2148,14 +2118,6 @@ span.color7{
 @media only screen and (max-width: 480px) {
 	.wrap{
 		width:95%;
-	}
-	.web_search {
-		display: none;
-	}
-	.tabs label {
-		width: 21.333%;
-		padding: 0 20px;
-		font-size: 14px;
 	}
 	.f_search {
 		width: 100%;
@@ -2234,10 +2196,6 @@ span.color7{
 	}
 	.f_search form input[type="submit"] {
 		width: 18.33333%;
-	}
-	.tabs label {
-		width: 84.3333%;
-		padding: 0 20px;
 	}
 	.tabs input {
 		width: 98.33333%;	

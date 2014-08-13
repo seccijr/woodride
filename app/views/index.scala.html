@@ -1,6 +1,6 @@
-@(message: String)
+@(newArrivals: List[TProduct])
 
-@main(message) {
+@main("Inicio") {
     <link type="text/css" rel="stylesheet" href="@controllers.routes.Assets.at("stylesheets/slider.css")" media="all" />
     <div class="slider">
         <div class="image-slider">
@@ -140,7 +140,7 @@
             </div>
         </div>
     </div>
-    <div class="top_bg">
+    <div class="sections_bg">
         <div class="wrap">
             <div class="main1">
                 <div class="image1_of_3">
@@ -167,61 +167,7 @@
                     <a href="#">show all</a>
                     <div class="clear"></div>
                 </div>
-                <div class="grids_of_3">
-                    <div class="grid1_of_3">
-                        <a href="/product/WOODRIDEGOODRIDE1">
-                            <img src="@controllers.routes.Assets.at("images/pic1.jpg")" alt=""/>
-                            <h3>even & odd</h3>
-                            <span class="price">$145,99</span>
-                        </a>
-                    </div>
-                    <div class="grid1_of_3">
-                        <a href="/product/WOODRIDEGOODRIDE1">
-                            <img src="@controllers.routes.Assets.at("images/pic2.jpg")" alt=""/>
-                            <h3>buffalo decollete</h3>
-                            <span class="price">$185,99</span>
-                            <span class="price1 bg">on sale</span>
-                        </a>
-                    </div>
-                    <div class="grid1_of_3">
-                        <a href="/product/WOODRIDEGOODRIDE1">
-                            <img src="@controllers.routes.Assets.at("images/pic3.png")" alt=""/>
-                            <h3>even & odd</h3>
-                            <span class="price">$145,99</span>
-                        </a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="top_main">
-                    <h2>best sellers of the month</h2>
-                    <a href="#">show all</a>
-                    <div class="clear"></div>
-                </div>
-                <div class="grids_of_3">
-                    <div class="grid1_of_3">
-                        <a href="/product/WOODRIDEGOODRIDE1">
-                            <img src="@controllers.routes.Assets.at("images/pic4.png")" alt=""/>
-                            <h3>buffalo decollete</h3>
-                            <span class="price">$145,99</span>
-                        </a>
-                    </div>
-                    <div class="grid1_of_3">
-                        <a href="/product/WOODRIDEGOODRIDE1">
-                            <img src="@controllers.routes.Assets.at("images/pic5.png")" alt=""/>
-                            <h3>even & odd</h3>
-                            <span class="price">$185,99</span>
-                        </a>
-                    </div>
-                    <div class="grid1_of_3">
-                        <a href="/product/WOODRIDEGOODRIDE1">
-                            <img src="@controllers.routes.Assets.at("images/pic6.png")" alt=""/>
-                            <h3>buffalo decollete</h3>
-                            <span class="price">$145,99</span>
-                            <span class="price1 bg1">out of stock</span>
-                        </a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                @product.table(newArrivals)
                 <div class="clear"></div>
                 <div class="grids_of_2">
                     <div class="grid1_of_2">

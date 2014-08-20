@@ -43,4 +43,6 @@ object Injector {
       val productModel = injProductModel
     }
   }
+
+  lazy val shopController: TShopController = new ShopController
 }

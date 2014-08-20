@@ -1,0 +1,11 @@
+@(product: TProduct)
+
+@helper.form(action = routes.TShopController.addToCart()) {
+    @helper.input(ShopForms.addToCart("ref")) {(id, name, value, args) =>
+        <input id="add-to-cart-ref" value="@product.ref" name="@name" type="hidden" @toHtmlArgs(args)>
+    }
+    @helper.input(ShopForms.addToCart("quantity")) {(id, name, value, args) =>
+        <input id="add-to-cart-quantity" value="1" name="@name" type="hidden" @toHtmlArgs(args)>
+    }
+    <input type="submit" id="product-add-to-cart"/>
+}

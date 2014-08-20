@@ -1,4 +1,4 @@
-@(product: TProduct, addToCartForm: Form[viewmodels.TCartProduct])
+@(product: TProduct)
 
 @main("Product: " concat product.name) {
     <div class="top_bg">
@@ -34,18 +34,17 @@
                             <div class="desc1">
                                 <h3>@product.name</h3>
                                 @defining[TPrice](product.mainPrice) { mainPrice =>
-                                    <h5>@mainPrice.currency @mainPrice.value @if(product.onSales) {
-                                    } <a href="#">click for offer</a></h5>
+                                    <h5>
+                                        @mainPrice.currency @mainPrice.value @if(product.onSales) {
+                                            <a href="#">pulsar para ver oferta</a>
+                                        }
+                                    </h5>
                                 }
                                 <div class="available">
                                     <div class="btn_form">
                                         <input type="button" data-toggle="modal" data-target="#confirm-product-dialog" value="buy now">
                                         <div class="hidden">
-                                            @helper.form(action = controllers.TApplicationController.addToCartPost) {
-                                                @helper.input(addToCartForm("ref"), 'type -> "hidden", 'value -> product.ref, 'id -> "add-to-cart-ref")
-                                                @helper.input(addToCartForm("quantity"), 'type -> "hidden", 'id -> "add-to-cart-quantity")
-                                                <input type="submit" id="product-add-to-cart"/>
-                                            }
+                                            @shop.addToCart(product)
                                         </div>
                                     </div>
                                     <span><a href="#">login to save in wishlist </a></span>
@@ -168,20 +167,50 @@
             </div>
         </div>
     </div>
-    @shop.confirmation("confirm-product-dialog", "Product") {
-        <h4>Text in a modal</h4>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-        <h4>Popover in a modal</h4>
-        <p>This <a href="#" role="button" class="btn btn-default popover-test" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">button</a> should trigger a popover on click.</p>
-
-        <h4>Tooltips in a modal</h4>
-        <p><a href="#" class="tooltip-test" title="" data-original-title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
-
-        <hr>
-
-        <h4>Overflowing text to show scroll behavior</h4>
-        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    @shop.confirmation("confirm-product-dialog", "Añadir al carrito") {
+        <div class="confirmation-image pull-right">
+            <img src="/assets/images/product/@product.picture" alt="@product.name" title="@product.name" />
+        </div>
+        <div class="desc1">
+            <h4>El artículo @product.name será añadido a su cesta de la compra</h4>
+            @defining[TPrice](product.mainPrice) { mainPrice =>
+            <h5>
+                @mainPrice.currency @mainPrice.value @if(product.onSales) {
+                <a href="#">pulsar para ver oferta</a>
+                }
+            </h5>
+            }
+            <div class="available">
+                <p>Short description.</p>
+            </div>
+            <div class="color-desc">
+                <div class="color">
+                    <h4>Número de unidades:</h4>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Green<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#"> <span class="color2"> </span><p class="red">Green</p></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"> <span class="color3"> </span><p class="red">Blue</p></a></li>
+                                <li><a href="#"> <span class="color4"> </span><p class="red">Yellow</p></a></li>
+                                <li><a href="#"> <span class="color5"> </span><p class="red">Violet</p></a></li>
+                                <li><a href="#"> <span class="color6"> </span><p class="red">Orange</p></a></li>
+                                <li><a href="#"> <span class="color7"> </span><p class="red">Gray</p></a></li>
+                            </ul>
+                        </div><!-- /btn-group -->
+                        <input id="confirm-product-dialog-quantity" type="text" class="form-control" value="1" />
+                        <button id="confirm-product-dialog-more" class="btn btn-default">
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                        </button>
+                        <button id="confirm-product-dialog-less" class="btn btn-default">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
     }
     <script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/views/product/details.js")"></script>
 }

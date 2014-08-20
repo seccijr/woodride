@@ -9,7 +9,10 @@ GET        /                         @controllers.TApplicationController.index
 GET        /catalog                  @controllers.TProductController.catalog(pageParam: Option[Int], pageSizeParam: Option[Int])
 
 # Add to cart product
-GET        /cart/add                @controllers.TShopController.addToCart(pageParam: Option[Int], pageSizeParam: Option[Int])
+POST        /cart/add                @controllers.TShopController.addToCart()
+
+# Shopping cart
+GET         /cart                   @controllers.TShopController.cart()
 
 # Details page
 GET        /product/:refParam        @controllers.TProductController.details(refParam: String)

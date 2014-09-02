@@ -32,7 +32,7 @@ class PriceModel extends TPriceModel {
   override def getRelatedToProduct(ref: String): List[TPrice] = {
     Cypher(
       """
-        |MATCH (n:Price)-[r:MAIN_PRICE]->(p:Product {ref: {ref}})
+        |MATCH (n:Price)-[r:SALE_PRICE]->(p:Product {ref: {ref}})
         |RETURN n.value, n.currency, type(r) as priceType, r.date as priceDate
       """.stripMargin)
       .on("ref" -> ref)().map {

@@ -51,9 +51,9 @@ class ProductRepository extends TProductRepository {
   override def getByName(name: String): Option[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)-[r:MAIN_PRICE]->(n:Product {name: {name}})
+        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {name: {name}})
         |RETURN ${productRowDef}
-        |ORDER BY r.date DESC LIMIT 1
+        |ORDER BY l.stock, r.date DEl:LotSC LIMIT 1
       """.stripMargin)
       .on("name" -> name)().headOption.map(productRowParser)
   }
@@ -61,7 +61,7 @@ class ProductRepository extends TProductRepository {
   override def getByRef(ref: String): Option[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:MAIN_PRICE]-(n:Product {ref: {ref}})
+        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {ref: {ref}})
         |RETURN ${productRowDef}
         |ORDER BY r.date DESC LIMIT 1
       """.stripMargin)
@@ -71,7 +71,7 @@ class ProductRepository extends TProductRepository {
   override def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:MAIN_PRICE]-(n:Product {sort: {sort}})
+        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {sort: {sort}})
         |WITH r, p ORDER BY r.date DESC LIMIT 1
         |MATCH (n:Product)
         |WITH n, r, p
@@ -87,9 +87,9 @@ class ProductRepository extends TProductRepository {
   override def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:MAIN_PRICE]-(n:Product {sort: {sort}})
+        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {sort: {sort}})
         |WITH p, r ORDER BY r.date DESC LIMIT 1
-        |MATCH (n)-[:OBJECT_OF]->(s:Sale)
+        |MATCH (n)<-[:LOT_OF]-(l:Lot)-[:OBJECT_OF]->(s:Sale)
         |WITH n, r, p, s
         |RETURN ${productRowDef}, count(s) as n_sales
         |ORDER BY n_sales DESC

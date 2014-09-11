@@ -1,4 +1,4 @@
-@(products: List[TProduct])
+@(products: List[TProductDTO])
 
 <div class="grids_of_@products.length">
     @for(product <- products) {
@@ -6,7 +6,7 @@
             <a href="/product/@product.ref">
                 <img src="@controllers.routes.Assets.at("images/product/" concat product.picture)" alt="">
                 <h3>@product.name</h3>
-                <span class="price">@product.mainPrice.value @product.mainPrice.currency</span>
+                <span class="price">@product.mainPrice</span>
                 @if(product.outOfStock) {
                     <span class="price1 bg1">out of stock</span>
                 }

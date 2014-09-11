@@ -23,3 +23,5 @@ libraryDependencies ++= Seq(
 play.Project.playScalaSettings
 
 unmanagedSourceDirectories in Compile += baseDirectory.value / "abstract"
+
+templatesImport += "dtos._"

@@ -1,4 +1,4 @@
-@(product: TProduct)
+@(product: TProductDTO)
 
 @helper.form(action = routes.TShopController.addToCart()) {
     @helper.input(ShopForms.addToCart("ref")) {(id, name, value, args) =>

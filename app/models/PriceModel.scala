@@ -36,7 +36,12 @@ class PriceModel extends TPriceModel {
         |RETURN n.value, n.currency, type(r) as priceType, r.date as priceDate
       """.stripMargin)
       .on("ref" -> ref)().map {
-      row => Price(row[Double]("n.value"), row[String]("n.currency"), row[PriceRelType]("p.type"), row[Date]("priceDate"))
+      row => Price(
+        row[Double]("n.value"),
+        row[String]("n.currency"),
+        row[PriceRelType]("p.type"),
+        row[Date]("priceDate")
+      )
     }.toList
   }
 }

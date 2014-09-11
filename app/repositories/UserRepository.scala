@@ -30,7 +30,11 @@ class UserRepository extends TUserRepository {
         User(identityId, identityNames, authMethod, None, Some(oAuth2))
       }
       case AuthenticationMethod("userpass") =>
-        val passwordInfo = PasswordInfo(authInfo.getOrElse("hasher", ""), authInfo.getOrElse("password", ""), authInfo.get("salt"))
+        val passwordInfo = PasswordInfo(
+          authInfo.getOrElse("hasher", ""),
+          authInfo.getOrElse("password", ""),
+          authInfo.get("salt")
+        )
         User(identityId, identityNames, authMethod, None, None, Some(passwordInfo))
       case _ =>
         User(identityId, identityNames, authMethod)
@@ -51,7 +55,8 @@ class UserRepository extends TUserRepository {
   override def getByEmailAndProvider(email: String, providerId: String): Option[Identity] = {
     Cypher(
       s"""
-        |MATCH (ai:AuthInfo)<-[:AUTH_INFO]-(i:Identity{email: {email}})-[:AUTHENTICATED_BY]->(p:AuthProvider{id: {providerId}})
+        |MATCH (ai:AuthInfo)<-[:AUTH_INFO]-(i:Identity{email: {email}}),
+        |(i)-[:AUTHENTICATED_BY]->(p:AuthProvider{id: {providerId}})
         |RETURN ${userRowDef}
       """.stripMargin)
       .on("email" -> email, "providerId" -> providerId)()

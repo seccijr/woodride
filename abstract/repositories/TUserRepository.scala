@@ -1,6 +1,6 @@
 package repositories
 
-import securesocial.core.{Identity, IdentityId}
+import securesocial.core.Identity
 
 trait TUserRepositoryComposition {
   val userRepository: TUserRepository

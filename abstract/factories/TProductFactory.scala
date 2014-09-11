@@ -8,6 +8,14 @@ trait TProductFactoryComposition {
 }
 
 trait TProductFactory {
-  def apply (ref: String, sort: String, name: String, pattern: String, color: String, picture: String,
-             onSales: Boolean, mainPrice: TPrice, date: Date): TProduct
+  def apply (
+              ref: String,
+              sort: String,
+              name: String,
+              pattern: String,
+              color: String,
+              picture: String,
+              onSales: Boolean,
+              mainPrice: TPrice, date: Date
+              ): TProduct
 }

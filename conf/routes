@@ -1,51 +1,32 @@
 # Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
 
-# Home page
-GET        /                         @controllers.TApplicationController.index
+GET         /                              @controllers.TApplicationController.index
+GET         /catalog                       @controllers.TProductController.catalog(pageParam: Option[Int], pageSizeParam: Option[Int])
+POST        /cart/add                      @controllers.TShopController.addToCart()
+GET         /cart                          @controllers.TShopController.cart()
+GET         /product/:refParam             @controllers.TProductController.details(refParam: String)
+GET         /about                         @controllers.TApplicationController.about
+GET         /contact                       @controllers.TApplicationController.contact
+GET         /blog                          @controllers.TApplicationController.blog
+GET         /assets/*file                  controllers.Assets.at(path="/public", file)
 
-# Products page
-GET        /catalog                  @controllers.TProductController.catalog(pageParam: Option[Int], pageSizeParam: Option[Int])
+# Securesocial
 
-# Add to cart product
-POST        /cart/add                @controllers.TShopController.addToCart()
-
-# Shopping cart
-GET         /cart                   @controllers.TShopController.cart()
-
-# Details page
-GET        /product/:refParam        @controllers.TProductController.details(refParam: String)
-
-# About page
-GET        /about                    @controllers.TApplicationController.about
-
-# Contact page
-GET        /contact                 @controllers.TApplicationController.contact
-
-# Blog page
-GET        /blog                     @controllers.TApplicationController.blog
-
-# Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file             controllers.Assets.at(path="/public", file)
-
-# Login page
-GET     /login                      securesocial.controllers.LoginPage.login
-GET     /logout                     securesocial.controllers.LoginPage.logout
-
-# User Registration and password handling
-GET     /signup                     securesocial.controllers.Registration.startSignUp
-POST    /signup                     securesocial.controllers.Registration.handleStartSignUp
-GET     /signup/:token              securesocial.controllers.Registration.signUp(token)
-POST    /signup/:token              securesocial.controllers.Registration.handleSignUp(token)
-GET     /reset                      securesocial.controllers.Registration.startResetPassword
-POST    /reset                      securesocial.controllers.Registration.handleStartResetPassword
-GET     /reset/:token               securesocial.controllers.Registration.resetPassword(token)
-POST    /reset/:token               securesocial.controllers.Registration.handleResetPassword(token)
-GET     /password                   securesocial.controllers.PasswordChange.page
-POST    /password                   securesocial.controllers.PasswordChange.handlePasswordChange
+GET         /login                         securesocial.controllers.LoginPage.login
+GET         /logout                        securesocial.controllers.LoginPage.logout
+GET         /signup                        securesocial.controllers.Registration.startSignUp
+POST        /signup                        securesocial.controllers.Registration.handleStartSignUp
+GET         /signup/:token                 securesocial.controllers.Registration.signUp(token)
+POST        /signup/:token                 securesocial.controllers.Registration.handleSignUp(token)
+GET         /reset                         securesocial.controllers.Registration.startResetPassword
+POST        /reset                         securesocial.controllers.Registration.handleStartResetPassword
+GET         /reset/:token                  securesocial.controllers.Registration.resetPassword(token)
+POST        /reset/:token                  securesocial.controllers.Registration.handleResetPassword(token)
+GET         /password                      securesocial.controllers.PasswordChange.page
+POST        /password                      securesocial.controllers.PasswordChange.handlePasswordChange
 
 # Providers entry points
-GET     /authenticate/:provider     securesocial.controllers.ProviderController.authenticate(provider)
-POST    /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider)
-GET     /not-authorized             securesocial.controllers.ProviderController.notAuthorized
+
+GET         /authenticate/:provider        securesocial.controllers.ProviderController.authenticate(provider)
+POST        /authenticate/:provider        securesocial.controllers.ProviderController.authenticateByPost(provider)
+GET         /not-authorized                securesocial.controllers.ProviderController.notAuthorized

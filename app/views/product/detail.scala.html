@@ -1,4 +1,4 @@
-@(product: TProduct)
+@(product: TProductDTO)
 
 @main("Product: " concat product.name) {
     <div class="top_bg">
@@ -33,13 +33,11 @@
                         <div class="span1_of_1_des">
                             <div class="desc1">
                                 <h3>@product.name</h3>
-                                @defining[TPrice](product.mainPrice) { mainPrice =>
-                                    <h5>
-                                        @mainPrice.currency @mainPrice.value @if(product.onSales) {
-                                            <a href="#">pulsar para ver oferta</a>
-                                        }
-                                    </h5>
-                                }
+                                <h5>
+                                    @product.mainPrice @if(product.onSales) {
+                                    <a href="#">pulsar para ver oferta</a>
+                                    }
+                                </h5>
                                 <div class="available">
                                     <div class="btn_form">
                                         <input type="button" data-toggle="modal" data-target="#confirm-product-dialog" value="buy now">
@@ -173,13 +171,11 @@
         </div>
         <div class="desc1">
             <h4>El artículo @product.name será añadido a su cesta de la compra</h4>
-            @defining[TPrice](product.mainPrice) { mainPrice =>
             <h5>
-                @mainPrice.currency @mainPrice.value @if(product.onSales) {
+                @product.mainPrice @if(product.onSales) {
                 <a href="#">pulsar para ver oferta</a>
                 }
             </h5>
-            }
             <div class="available">
                 <p>Short description.</p>
             </div>
@@ -198,7 +194,7 @@
                                 <li><a href="#"> <span class="color6"> </span><p class="red">Orange</p></a></li>
                                 <li><a href="#"> <span class="color7"> </span><p class="red">Gray</p></a></li>
                             </ul>
-                        </div><!-- /btn-group -->
+                        </div>
                         <input id="confirm-product-dialog-quantity" type="text" class="form-control" value="1" />
                         <button id="confirm-product-dialog-more" class="btn btn-default">
                             <span class="glyphicon glyphicon-chevron-up"></span>
@@ -206,7 +202,7 @@
                         <button id="confirm-product-dialog-less" class="btn btn-default">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
-                    </div><!-- /input-group -->
+                    </div>
                 </div>
                 <div class="clear"></div>
             </div>

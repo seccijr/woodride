@@ -2,7 +2,7 @@ package repositories
 
 import java.util.Date
 import org.anormcypher.{Cypher, CypherResultRow}
-import models.{TStockModelComposition, Price, TPrice, TProduct}
+import models.{Price, TPrice, TProduct}
 import types.PriceRel.PriceRelType
 import types.Product.ProductType
 import factories.TProductFactoryComposition
@@ -15,8 +15,8 @@ class ProductRepository extends TProductRepository {
     n.sort,
     n.name,
     n.pattern,
-    n.color,
-    n.picture,
+    l.color,
+    l.picture,
     n.date,
     n.onSales,
     p.value,
@@ -40,8 +40,8 @@ class ProductRepository extends TProductRepository {
       row[String]("n.sort"),
       row[String]("n.name"),
       row[String]("n.pattern"),
-      row[String]("n.color"),
-      row[String]("n.picture"),
+      row[String]("l.color"),
+      row[String]("l.picture"),
       row[Boolean]("n.onSales"),
       mainPrice,
       row[Date]("n.date")
@@ -51,9 +51,9 @@ class ProductRepository extends TProductRepository {
   override def getByName(name: String): Option[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {name: {name}})
+        |MATCH (n:Product {name: {name}})<-[:DEMO_LOT_OF]-(l:Lot)-[r:SALE_PRICE]->(p:Price)
         |RETURN ${productRowDef}
-        |ORDER BY l.stock, r.date DEl:LotSC LIMIT 1
+        |ORDER BY r.date DESC LIMIT 1
       """.stripMargin)
       .on("name" -> name)().headOption.map(productRowParser)
   }
@@ -61,7 +61,7 @@ class ProductRepository extends TProductRepository {
   override def getByRef(ref: String): Option[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {ref: {ref}})
+        |MATCH (n:Product {ref: {ref}})<-[:DEMO_LOT_OF]-(l:Lot)-[r:SALE_PRICE]->(p:Price)
         |RETURN ${productRowDef}
         |ORDER BY r.date DESC LIMIT 1
       """.stripMargin)
@@ -71,10 +71,10 @@ class ProductRepository extends TProductRepository {
   override def getNewArrivals(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {sort: {sort}})
-        |WITH r, p ORDER BY r.date DESC LIMIT 1
-        |MATCH (n:Product)
-        |WITH n, r, p
+        |MATCH (n:Product)<-[:LOT_OF]-(:Lot)-[sp:SALE_PRICE]->(:Price)
+        |WITH n, max(sp.date) as newest
+        |MATCH (n)<-[:DEMO_LOT_OF]-(l:Lot)-[r:SALE_PRICE {date: newest}]->(p:Price)
+        |WITH n, r, p, l
         |RETURN ${productRowDef}
         |ORDER BY n.date DESC
         |SKIP {skip}
@@ -87,10 +87,10 @@ class ProductRepository extends TProductRepository {
   override def getBestSeller(page: Int, pageSize: Int, productType: ProductType): List[TProduct] = {
     Cypher(
       s"""
-        |MATCH (p:Price)<-[r:SALE_PRICE]-(l:Lot)-[:LOT_OF]->(n:Product {sort: {sort}})
-        |WITH p, r ORDER BY r.date DESC LIMIT 1
-        |MATCH (n)<-[:LOT_OF]-(l:Lot)-[:OBJECT_OF]->(s:Sale)
-        |WITH n, r, p, s
+        |MATCH (n:Product)<-[:LOT_OF]-(:Lot)-[sp:SALE_PRICE]->(:Price)
+        |WITH n, max(sp.date) as newest
+        |MATCH (n)<-[:DEMO_LOT_OF]-(l:Lot)-[r:SALE_PRICE {date: newest}]->(p:Price), (l)-[:OBJECT_OF]->(s:Sale)
+        |WITH n, r, p, s, l
         |RETURN ${productRowDef}, count(s) as n_sales
         |ORDER BY n_sales DESC
         |SKIP {skip}

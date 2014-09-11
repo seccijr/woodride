@@ -4,8 +4,17 @@ import java.util.Date
 import types.Product.ProductType
 import repositories.TProductRepositoryComposition
 
-class Product(val ref: String, val sort: String, val name: String, val pattern: String, val color: String,
-              val picture: String, val onSales: Boolean, val mainPrice: TPrice, val date: Date) extends TProduct {
+class Product(
+               override val ref: String,
+               override val sort: String,
+               override val name: String,
+               override val pattern: String,
+               override val color: String,
+               override val picture: String,
+               override val onSales: Boolean,
+               override val mainPrice: TPrice,
+               override val date: Date
+               ) extends TProduct {
   self: TStockModelComposition =>
 
   private var _stock: Option[TStock] = None

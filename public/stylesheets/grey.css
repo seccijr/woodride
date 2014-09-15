@@ -1,0 +1,1745 @@
+/* ---------------------------------------- Css basic style rules --------------------------------------------------- */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+body{
+	*behavior: url(/css/valentino/hover1.htc);/*IE6 behavior don't remove*/
+	font-size:12px;
+	font-family: 'DinMedium',Arial,Verdana,serif;
+	text-align:center;
+	height:100%;
+	width:100%;
+	font-size:11px;
+}
+form{
+	padding: 0;
+	margin: 0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset, img {
+	border:0 none;
+}
+address, caption, cite, code, dfn, em, th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol, ul {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+caption, th {
+	text-align:left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+	font-weight:100;
+}
+#subWrapper {
+	display:none;
+}
+.clear{
+	clear:both;
+}
+.hidden {
+	display :none;
+}
+
+/* -------------------------------------------- UTILS - clearfix ---------------------------------------------------- */
+.clearFix:after, .clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	font-size: 0;
+	height: 0;
+	visibility: hidden;
+}
+.clearFix, .clearfix {
+	display: inline-block;
+}
+* html .clearFix, * html .clearfix  {
+	height: 1%;
+}
+
+/* ------------------------------------------- INPUT, SELECT  ------------------------------------------------------- */
+input, select{
+	margin: 0 0 4px 0;
+	padding: 2px 0 0 3px;
+	width: 240px;
+	height: 16px;
+	font-size:11px;
+	background: #F8F8F8;
+	border: 1px solid #E1E1E1;
+}
+select{
+
+	height: 18px !important;
+	padding: 0px 0px 0px 3px;
+}
+a.buttonPrev:hover , a.buttonPrev:active ,
+a.buttonNext:hover , a.buttonNext:active { /*ho eliminato tutti gli hover per incompatibilità*/
+	color:#000;
+}
+a.buttonNext, a.buttonNext:link, a.buttonNext:visited {
+	background:none repeat scroll 0 0 #fff;
+	border:1px solid #e9e9e9;
+	color:#999;
+	cursor:pointer;
+	display:block;
+	float:left;
+	font-weight:bold;
+	height:19px;
+	line-height:19px;
+	padding:0 10px;
+	text-align:center;
+	text-transform:uppercase;
+}
+a:link, a:visited, a:active,
+.error a:link, .error a:visited, .error a:active {
+	cursor: pointer;
+	color: #999;
+	text-decoration: none;
+}
+a:hover, .error a:hover {
+	color: #000;
+	cursor: pointer;
+}
+a:active {
+	outline: none;
+}
+a:focus {
+	-moz-outline-style: none;
+	outline: none;
+}
+object {
+	outline: none;
+}
+.bold{
+	font-weight:bold;
+}
+.privacy {
+	clear:both;
+	padding:14px 0;
+	width:100%;
+}
+
+.cols{
+	z-index:1;
+	font-weight: normal;
+	text-align: left;
+}
+.welcome{
+	float:left;
+	line-height: 11px;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+.welcome span{padding:0 8px;}
+.mainSectionsInner{ /*modificare gianluca*/
+	font-family:'DinMedium',Arial,Verdana,serif;
+}
+.redValentino #login{
+	font: 12px 'DinMedium',Arial,Verdana,serif;
+}
+.redValentino #mainSectionsInner{top: 72px;}
+#mainSectionsInner{
+	font-size:11px;
+	text-transform:uppercase;
+}
+
+.redValentino #containerNewsletter{
+	font-size:12px;
+}
+#containerShop{
+	display:inline;
+	float:right;
+	font-size:14px;
+	z-index: 3;
+	position: absolute;
+	top: 20px;
+	left: 369px;
+}
+#containerShop a{
+	color:#000;
+	padding:0 10px;
+}
+#containerShop a#first{
+	border-right:1px solid #000;
+}
+#containerShop a.selected{
+	text-decoration:underline;
+}
+
+/* ------------------------------------------------------ MENU' RED ------------------------------------------------- */
+div.floatL.textSearch{
+	display:none;
+}
+.redValentino  input#textsearchinput {
+	background:none repeat scroll 0 0 #DCDCDC;
+	border:0 none;
+	height:16px;
+	line-height:16px;
+	margin:12px 22px 0 0;
+	width:205px;
+}
+.redValentino input#searchRight {
+	border:0 none;
+	padding:0 none;
+	background:url('http://cdn2.yoox.biz/Os/valentino3/searchbutton.jpg') no-repeat scroll 0 -15px transparent;
+	display:block;
+	position:absolute;
+	right:0px;
+	top:12px;
+	*top:13px;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+.menuRed{
+	border-bottom:1px solid #000;
+}
+#menuRed{
+	font-family:'DinLight',Arial,Verdana,serif;
+	text-transform:uppercase;
+}
+#switchSeason, #menuRed h2 a{
+	font-size:19px;
+}
+#switchSeason a.super{
+	letter-spacing:-2px;
+}
+#menuRed h2 a{
+	background-color:#000;
+	color:#fff;
+	padding:0 10px;
+	text-decoration:none;
+}
+#theme h2 a{
+	height:20px;
+	line-height:50px;
+	padding:0;
+	color:#000;
+	background-color:#fff;
+}
+#switchSeason li a{
+	background-color:#666;
+	color:#fff;
+	padding:0 10px;
+	font-weight:100;
+	text-decoration:none;
+}
+.redValentino #switchSeason li.selected a,
+.redValentino  #switchSeason #micro li.selected a{
+	background-color:#000;
+}
+#switchSeason #micro{
+	margin-left:14px;
+}
+#switchSeason li a:hover,
+#switchSeason #micro a{background-color:#999;}
+#switchSeason a.super{background-color:#e5e5e5;}
+#switchSeason a.super.sel,
+#switchSeason #micro a:hover{
+	background-color:#666;
+}
+#switchSeason .super{color:#999;}
+#switchSeason .super:hover{background-color:#666;}
+
+#switchSeason .super.sel{color:#E5E5E5;}
+
+#switchSeason a.super.sel,
+.redValentino  #switchSeason #micro li.selected a{cursor:default;}
+.subMacro, #theme li a{
+	font-size:16px;
+	line-height:20px;
+}
+#theme li a{
+	padding:0 5px;
+	color:#000;
+}
+#theme li.selected a,#theme li a:hover{
+	background-color:#000;
+	color:#fff;
+}
+#textSearch{ position:relative; }
+#theme{
+	padding-bottom:15px;
+	font-weight:100;
+	display: none;
+}
+#bannerSlot a{
+	line-height:50px;
+	font-weight:100;
+}
+
+#newArrivals {
+	margin-bottom: 10px;
+}
+
+#newArrivals li a.selected, #newArrivals li a.selected:hover {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#newArrivals li a {
+	color: #000;
+	padding: 0 5px;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+}
+
+/* ------------------------------------------------ Main Structure -------------------------------------------------- */
+#container {
+	text-align:left;
+	width:100%;
+	margin:0 auto;
+}
+#videoContainer{
+    height:554px;
+    overflow:hidden;    
+}
+
+#footer { text-align: center; }
+#header,#subheader,#wrapper,#footerInner {
+	width: 990px;
+	margin: 0 auto;
+}
+#footerInner {
+	text-align: left;
+}
+#accountindex #wrapper, #accountregistration #wrapper{
+	padding:0 9px;
+}
+#wrapper {
+	height: auto;      /* per IE5.x e IE6 */
+	min-height: 564px;  /* per i browser moderni */
+	z-index: 1;
+	padding-bottom: 38px;
+	position: relative;
+}
+#subhomeVALENTINO #wrapper {
+    padding-bottom: 8px;
+}
+
+html.ie7 #wrapper { z-index: -2; }
+html.ie7 #subheader { z-index: -1; }
+#content{position:relative;}
+
+#col1{
+	height:auto;
+	width:100%;
+	position:relative;
+}
+.redValentino #content{
+	float: left;
+	height:auto !important;
+	height:440px;
+	min-height:440px;
+	display:inline;
+	padding-bottom:19px;
+	position:relative;
+	width: 230px;
+}
+#accountindex.redValentino #content {
+	width:100%;
+}
+#accountprofile.redValentino #content {
+	float:none;
+}
+
+.redValentino #col1{
+	width:730px;
+	min-height:440px;
+	height:auto !important;
+	height:440px;
+	float:left;
+	display:inline;
+	margin:10px auto;
+}
+#slotContainer{
+	height:540px;
+	width:960px;
+}
+.redValentino #slotContainer{
+	float:right;
+	height:404px;
+	width:720px;
+	position: absolute;
+	left: 10px;
+}
+
+/* ---------------------------------------- BANNER SLOT HOMEPAGE VALENTINO ------------------------------------------ */
+
+.innerSlot01, .innerSlot02, .innerSlot03, .innerSlot04,
+.innerSlot05, .innerSlot06, .innerSlot07, .innerSlot08,
+.innerSlot09, .innerSlot10, .innerSlot11, .innerSlot12,
+.innerSlot13, .innerSlot14, .innerSlot15, .innerSlot16 {
+	position:absolute;
+	float: left;
+	min-height:139px;
+	min-width: 247px;
+}
+/* top */
+.innerSlot01, .innerSlot02, .innerSlot03, .innerSlot04 {
+	top:0;
+}
+.innerSlot05, .innerSlot06, .innerSlot07, .innerSlot08 {
+	top:139px;
+}
+.innerSlot09, .innerSlot10, .innerSlot11, .innerSlot12 {
+	top:278px;
+}
+.innerSlot13, .innerSlot14, .innerSlot15, .innerSlot16 {
+	top:417px;
+}
+
+/* left */
+.innerSlot01, .innerSlot05, .innerSlot09, .innerSlot13 {
+	left:0;
+}
+.innerSlot02, .innerSlot06, .innerSlot10, .innerSlot14 {
+	left:247px;
+}
+.innerSlot03, .innerSlot07, .innerSlot11, .innerSlot15 {
+	left:494px;
+}
+.innerSlot04, .innerSlot08, .innerSlot12, .innerSlot16 {
+	left:741px;
+}
+
+
+
+/* ------------------------------------------ BANNER SLOT HOMEPAGE RED-VALENTINO ------------------------------------ */
+
+.redValentino .innerSlot01,
+.redValentino .innerSlot02,
+.redValentino .innerSlot03,
+.redValentino .innerSlot04,
+.redValentino .innerSlot05,
+.redValentino .innerSlot06,
+.redValentino .innerSlot07,
+.redValentino .innerSlot08,
+.redValentino .innerSlot09,
+.redValentino .innerSlot10,
+.redValentino .innerSlot11,
+.redValentino .innerSlot12,
+.redValentino .innerSlot13,
+.redValentino .innerSlot14,
+.redValentino .innerSlot15,
+.redValentino .innerSlot16{
+	position:absolute;
+	float: left;
+	min-height:180px;
+	min-width: 101px;
+}
+.redValentino .innerSlot01{
+	top:0;
+	left:0;
+}
+.redValentino .innerSlot02{
+	top:0;
+	left:180px;
+}
+.redValentino .innerSlot03{
+	top:0;
+	left:360px;
+}
+.redValentino .innerSlot04{
+	top:0;
+	left:540px;
+}
+.redValentino .innerSlot05{
+	top:101px;
+	left:0;
+}
+.redValentino .innerSlot06{
+	top:101px;
+	left:180px;
+}
+.redValentino .innerSlot07{
+	top:101px;
+	left:360px;
+}
+.redValentino .innerSlot08{
+	top:101px;
+	left:540px;
+}
+.redValentino .innerSlot09{
+	top:202px;
+	left:0;
+}
+.redValentino .innerSlot10{
+	top:202px;
+	left:180px;
+}
+.redValentino .innerSlot11{
+	top:202px;
+	left:360px;
+}
+.redValentino .innerSlot12{
+	top:202px;
+	left:540px;
+}
+.redValentino .innerSlot13{
+	top:303px;
+	left:0;
+}
+.redValentino .innerSlot14{
+	top:303px;
+	left:180px;
+}
+.redValentino .innerSlot15{
+	top:303px;
+	left:360px;
+}
+.redValentino .innerSlot16{
+	top:303px;
+	left:540px;
+}
+
+.redValentino .innerSlot{
+	float:left;
+	display:inline;
+	background-color:Green;
+	width:180px;/*appena saranno presenti i banner inserire auto e accomunare le classi*/
+	height:101px;/*appena saranno presenti i banner inserire auto e accomunare le classi*/
+}
+
+/* --------------------------------------------- Old Footer --------------------------------------------------------- */
+
+#footer{
+    font-family:'DinMedium',Arial,Verdana,serif;
+    font-size:10px;
+    margin:0 auto;
+    text-transform:uppercase;
+
+    clear:both;
+}
+#footer a{
+    text-decoration:none;
+}
+#footer li{
+    display:inline;
+}
+.redValentino #footer, #accountindex #footer, #accountregistration #footer,
+#accountprofile #footer, #accountorders #footer,
+#accountaddress #footer, #accountwishlist #footer, .helpArea #footer{
+    clear:both;
+    background:0 none;
+}
+#footer{
+    background-color:#909090;
+}
+
+.border {
+    border-right:1px solid #fff;
+}
+#ftLeft li span{padding-right:8px;}
+#ftLeft li span.border{font-weight:bold;}
+.redValentino #ftLeft li span.border{font-weight:normal;color:#000;}
+.redValentino #shpp, .redValentino .border,
+#accountindex #shpp, #accountindex .border,
+#accountregistration #shpp, #accountregistration .border,
+#accountprofile #shpp, #accountprofile .border,
+#accountorders #shpp, #accountorders .border,
+#accountaddress #shpp, #accountaddress .border,
+#accountwishlist #shpp, #accountwishlist .border,
+.helpArea #shpp, .helpArea .border{
+    border-right: 1px solid #b2b2b2;
+}
+#footer #ftLeft li, #footer #cyc{
+    display:inline-block;
+    float:left;
+    height:10px;
+    line-height:10px;
+}
+#footer #ftRight li{float:right;}
+#footer #ftRight li.last a{padding-right:0px;}
+#ftRight a, #ftLeft a, #cyc,#ftLeft li span{
+    color:#fff;
+}
+#footer #cyc{
+    margin-left:8px;
+}
+#shpp{
+    color:#fff;
+}
+#shpp{
+    padding-right:8px;
+}  
+#footer #ftRight a{
+    padding:0 8px;
+}
+#footer #ftRight .copyright li{font-size:11px;padding:0;}
+.redValentino #footer, #accountindex #footer, #accountregistration #footer,
+#accountprofile #footer, #accountorders #footer, #accountaddress #footer, #accountwishlist #footer,.helpArea #footer{
+    border-top:1px solid #b2b2b2;
+}
+.redValentino #footer li,.redValentino #footer a,.redValentino #footer span,
+#accountindex #footer li span, #accountindex #footer a,
+#accountregistration #footer li, #accountregistration #footer a,
+#accountprofile #footer li, #accountprofile #footer a,
+#accountorders #footer li, #accountorders #footer a,
+#accountaddress #footer li, #accountaddress #footer a,
+#accountwishlist #footer li, #accountwishlist #footer a,
+.helpArea #footer li, .helpArea #footer a, .helpArea #ftLeft li span,#accountorders #footer #ftLeft span,#accountprofile #footer #ftLeft span,
+#accountaddress #footer #ftLeft span,#accountwishlist #footer #ftLeft span{
+    color:#b2b2b2;
+}
+
+.copyright{
+    font-size:9px;
+    text-transform:none;
+    color:#535353;
+    margin-top:8px;
+}
+#footer #ftRight .copyright li a{
+    float:none;
+    color:#535353;
+    padding:0px;
+}
+
+#switchBrand{
+	clear:both;
+	padding-top:6px;
+}
+#switchBrand span{
+	font-weight:bold;
+}
+#switchBrand span, #switchBrand a{
+	padding: 0 8px;
+	font-size:10px;
+}
+#switchBrand span, #switchBrand a, #switchBrand p{
+	/*float:left;*/
+	display:inline;
+}
+.redValentino #switchBrand{
+	color: #B2B2B2;
+}
+.redValentino #content #switchBrand{
+	margin-top:22px;
+	position:static;
+	font-family: 'DinLight',Arial,Verdana,serif;
+}
+.redValentino #content #switchBrand a{
+	background-color: #000000;
+    padding: 0 5px;
+    font-size:16px;
+    color: #FFF;
+}
+.redValentino #content #switchBrand a:hover{
+	color:#FFF;
+}
+/* --------------------------------------------------- Litbox ------------------------------------------------------- */
+
+.LB_window {
+	display:none;
+	font-size:11px;
+	position:absolute;
+	z-index:5001;/*maggiore di col2*/
+	text-align: left;
+}
+.LB_overlay,#LB_overlay {
+	background:url("http://cdn2.yoox.biz/Os/blank.gif") repeat scroll 0 0 transparent;
+	height:100%;
+	left:0;
+	position:absolute;
+	top:0;
+	width:100%;
+}
+#productAddedToCart{z-index:5011;}
+#productAddedToCart.errorAdd .item{display:none;}
+.errorAdd{height:50px;}
+.LB_overlay{z-index:4999;}
+body#item .LB_overlay{z-index:5000;}
+.ielt9 .LB_overlay, .ie9 .LB_overlay { z-index :201;}
+.ielt9 body#item .LB_overlay , .ie9 body#item .LB_overlay { z-index :201;}
+#wishlistInfoBox{z-index:5011;}
+.LB_content {
+	height:auto;
+}
+.shippingCell {
+	float:left;
+	display:inline;
+	width:300px;
+}
+.shippingCosts {
+	float: right;
+	text-align: right;
+	width: 100px;
+}
+#clearer, .clearer {
+	clear:both;
+	height:0 !important;
+	line-height:0;
+	margin:0;
+	padding:0;
+}
+.LB_window .inside {
+	background:none repeat scroll 0 0 #fff;
+	border:1px solid #909090;
+	padding:5px;
+}
+
+.popupSizeConversion .inside{
+	width:600px;
+}
+
+.popupSizeConversion1 .inside{
+	width:550px;
+}
+
+.popupSizeConversion td, .popupSizeConversion1 td {
+	border:1px solid #666;
+	text-align:center;
+	padding:4px;
+}
+.popupSizeConversion .caption, .popupSizeConversion1 .caption {
+	width:150px;
+	text-align:left;
+}
+
+.popupSizeConversion #sizeconvTableContainer
+{
+	border:0;
+}
+
+.popupSizeConversion .colorCaption, .popupSizeConversion1 .colorCaption{
+	background:#333;
+	color:#fff;
+	font-weight:bold;
+}
+
+#sizeConv2 table{
+	width:520px;
+}
+
+.popupSizeConversion1 .left{ text-align:left; width:180px;}
+
+#shippingCosContent .contribution {
+	float:left;
+	display:inline;
+	width:460px;
+}
+.LB_closeAjaxWindow a:link, .LB_closeAjaxWindow a:visited {
+	background:url("http://cdn2.yoox.biz/Os/valentino/main/v02/x_close.gif") no-repeat scroll right top transparent;
+	color:#000;
+	display:block;
+	float:right;
+	font-size:10px;
+	font-weight:bold;
+	height:15px;
+	position:relative;
+	width:15px;
+	z-index:9998;
+	margin: 5px 5px 0 0;
+}
+#addToWish{
+	display: inline;
+	float: right;
+	margin-top: -19px;
+}
+#labelUser,#labelPassword{display:block;}
+#buttonSubmit {
+	clear: left;
+}
+#submitLogin .buttonSx{height:0px;}
+
+/* ------------------------------------------- Litbox Newsletter ---------------------------------------------------- */
+
+#newsletterLayer{
+	font-family:'DinLight',Arial,Verdana,serif;
+	padding:30px;
+	text-align:left;
+	height: auto;
+	font-size: 13px;
+}
+#newsletterLayer h2.sectionTitle {
+	font-family:'DinMedium',Arial,Verdana,serif;
+	font-size:14px;
+}
+#labelEmailNewsletter{
+	margin:18px 0;
+}
+.twinletterNewsletter {
+	width:15px;
+	height:15px;
+}
+#chooseLogo {
+	width:100%;
+	margin-top:40px;
+	height: 90px;
+}
+#chooseLogo div {
+	float:left;
+	display:inline;
+	width:209px;
+}
+#chooseLogo input {
+	margin-right:15px;
+	margin-top:12px;
+	vertical-align:top;
+	border:none;
+}
+#v {
+	text-align:right;
+}
+#emailNewsletter {
+	background:none repeat scroll 0 0 #DCDCDC;
+	border:0 none;
+	font-size: 13px;
+}
+a#submitNewsletter.buttonNext {
+	background:#000;
+	border:0 none;
+	color:#fff;
+	font-size:14px;
+	position:absolute;
+	bottom:40px;
+	right:228px;
+	padding:0 5px;
+}
+a#submitNewsletter.buttonNext:hover {
+	color:#fff;
+}
+
+#errNewsletterFlag{
+	color:Red;
+}
+
+/* ----------------------------------------------------- Account ---------------------------------------------------- */
+
+#accountindex #header, #accountregistration #header,
+#accountprofile #header, #accountorders #header,
+#accountaddress #header, #accountwishlist #header{
+	height:160px;
+}
+.hiddenSubmit, .hiddenField {
+	border:medium none !important;
+	display:none;
+}
+.hiddenInput {
+	height:0;
+	margin:0;
+	padding:0;
+	visibility:hidden;
+	width:auto !important;
+}
+#accountNavigation, #headWrapper {
+	background:none repeat scroll 0 0 #666;
+	border-bottom:1px solid #fff;
+	height:27px;
+	line-height:27px;
+	margin:0 auto;
+	width:990px;
+}
+h2.sectionTitle, #newsletter h2 {
+	font-size:12px;
+	height:27px;
+	line-height:27px;
+	text-align:left;
+	text-transform:uppercase;
+}
+h2.sectionInnerTitle {
+	color:#4C4C4C;
+	font-size:12px;
+	font-weight:bold;
+	height:40px;
+	line-height:35px;
+	margin-bottom:15px;
+	text-align:left;
+	text-transform:uppercase;
+}
+.sectionHeader {
+	display:inline !important;
+	float:left;
+	width:100%;
+}
+#partials {
+	padding:10px;
+}
+
+#partials .flagMM {
+	display: inline;
+	margin-left: 50px;
+}
+#myHeader {
+	float:right;
+	font-size:9px;
+	overflow:hidden;
+	padding:0;
+	text-align:left;
+	text-transform:uppercase;
+	width:650px;
+}
+#helpContainer #myHeader {
+	width:760px;
+}
+#myHeader ul {
+	float:right;
+	margin:0;
+	overflow:hidden;
+}
+#myHeader ul li {
+	float:left;
+	height:27px;
+	line-height:27px;
+	list-style:none outside none;
+	padding:0 5px;
+	text-align:center;
+	text-transform:uppercase;
+}
+#myHeader ul li a {
+	color:#fff;
+}
+#myHeader ul li a, #myHeader ul li span {
+	height:27px;
+	line-height:27px;
+}
+#myHeader ul li.sel {
+	background:none repeat scroll 0 0 #fff;
+	color:#000;
+	line-height:27px;
+}
+#headWrapper h1 {
+	color:#fff;
+	display:inline;
+	float:left;
+	font-size:12px;
+	padding-left:10px;
+	text-align:left;
+	text-transform:uppercase;
+}
+.gb #myHeader{
+	width: 715px;
+}
+
+a.buttonPrev, a.buttonPrev:link, a.buttonPrev:visited {
+	background:none repeat scroll 0 0 #FFFFFF;
+	border:1px solid #E9E9E9;
+	color:#999999;
+	cursor:pointer;
+	display:block;
+	float:left;
+	font-weight:bold;
+	height:19px;
+	line-height:19px;
+	padding:0 10px;
+	text-align:center;
+	text-transform:uppercase;
+}
+
+/* ---------------------------------------------------- Sitemap ----------------------------------------------------- */
+
+#sitemap .brands h2, #sitemap .ccare h2 { margin-bottom: 5px; font: 12px 'DinRegular',Arial,Verdana,serif; text-transform: uppercase;}
+#sitemap .firstLevelItem { width: 300px; float: left; margin-left: 10px; }
+#sitemap .secondSel { margin: 0 0 0 10px; }
+#sitemap .thirdSel { margin: 0 0 10px 10px; }
+
+/* ------------------------------------------ LitBox wishList and ShoppingBag --------------------------------------- */
+
+#cartLayer,#productAddedToCart{
+	position:absolute;
+	font-family: 'DinLight',Arial,Verdana,serif;
+	background-color:#fff;
+	border-right:1px solid #eaeaea;
+	border-bottom:1px solid #d8d8d8;
+	border-left:1px solid #eaeaea;
+	right: 0;
+	top: 16px;
+}
+#productAddedToCart .msg b,
+#productAddedToCart .msg a{display:none;}
+#cartLayer{
+	z-index:999;
+	background:#fff;
+	width: 215px;
+}
+#cartLayer .itemInCart,#productAddedToCart .item{
+	height:70px;
+	text-align:right;
+	border-bottom: 1px solid #B3B3B3;
+}
+#cartLayer .itemInCart{margin:7px 10px;}
+#productAddedToCart .item{
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+}
+#productAddedToCart .item .desc{color: #B3B3B3;}
+.itemInCart a, .itemInCart a:hover, .total a, .total a:hover{color:#000;text-decoration:none;}
+#productAddedToCart .item{height:auto; border:none;}
+#productAddedToCart .inside{border:none;}
+#cartLayer img,#productAddedToCart .item img{
+	display:inline;
+	float:left;
+	height:63px;
+	width:50px;
+}
+#cartLayer .total{margin: 8px 0 16px;text-align: center;}
+#cartLayer strong{color:#b3b3b3;}
+#cartLayer .price{color:#000;}
+#productAddedToCart .item a{
+	background-color: #C81E12;
+	color: #fff;
+	display: block;
+	font-family: 'DinLight',Arial,Verdana,serif;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	width: 240px;
+	text-align: center;
+}
+
+#cartLayer .total, #cartLayer .total .price{
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+}
+.taglicolore{
+	font-weight: bold;
+	color: #000;
+}
+.taglicolore{
+	margin-top: 3px;
+}
+.taglicolore div, .itemInCart strong{  
+	margin-bottom: 4px;
+}
+#addToShoppingBag{
+	text-transform: none;
+	display: block;
+	height:auto;
+}
+.continueShopping{height:30px;margin: 5px;}
+.continueShopping a{position:relative;}
+#cartLayer .continueShopping a {
+	background-color: #C81E12;
+	color: #FFFFFF;
+	font-size: 16px;
+	padding: 8px 5px;
+	text-transform: uppercase;
+	display: block;
+	width: 95%;
+	margin-bottom: 5px;
+	text-align: center;
+}
+.JP #productAddedToCart .msg a{
+	display: none;
+}
+.redValentino #cartLayer{
+	border:1px solid#000;
+	top:16px;
+	font-family: 'DinLight',Arial,Verdana,serif;
+	font-size: 12px;
+}
+.redValentino #cartLayer strong {color:#000;}
+
+
+.valentino .usa a {
+	background: url('http://cdn2.yoox.biz/Os/valentino3/logoRedFooter2.gif') no-repeat scroll 0 0 transparent;
+	height: 50px;
+	margin-left: 10px;
+	position: absolute;
+	top: -11px;
+	width: 138px;
+}
+
+#targetVideo {
+	position:relative;
+	z-index: 1;
+}
+
+#linkLayer {
+	left: 0;
+	position: absolute;
+	top: 0;
+	display:block;
+	height:537px;
+	width:960px;
+	background : url("http://cdn2.yoox.biz/Os/valentino/blank.gif") repeat;
+	cursor: pointer;
+}
+
+/* ---------------------------------------- unsubscribeNL ----------------------------------------------------------- */
+
+.unsubscribe{
+	width: 250px;
+}
+.unsubscribe .checkbox{
+	margin-top: 12px;
+}
+div.unsubscibeNL{
+	height: 140px;
+	padding-bottom: 0;
+}
+.unsubscibeNL p{
+	float: left;
+	height: 20px;
+	padding-top: 3px;
+}
+p.mailInput{
+	padding-top: 0;
+	margin-left: 20px;
+}
+#multipleUnsubscribe{
+	clear: both;
+}
+span#unsubscribeNl {
+	background: url("http://cdn2.yoox.biz/Os/valentino3/unsubNl.png") no-repeat scroll 28px top transparent;
+	display: block;
+	height: 55px;
+}
+#unsubscribe1 #unsubscribeNl{
+	height: 28px;
+}
+#unsubscribe2 #unsubscribeNl{
+	background-position: 28px -28px;
+}
+
+/* ----------------------------------------------------- Header ----------------------------------------------------- */
+
+/*  OVERRIDES RULES FOR RESET NEWSLETTER INPUT STYLE*/
+#searchTextbox,#newsletterInput{
+	margin:0;
+	padding: 0;
+	width: 0px;
+	height: 0px;
+	font-size:0px;
+	background: none;
+	border: none;
+}
+/*****************************************/
+
+#container {position:relative;}
+#headerUpBar,#headerCnt {
+	width: 100%;
+	overflow: hidden;
+}
+#header {
+	height: 135px;
+	position: relative;
+	z-index: 3;
+}
+#headerUpBar {height: 32px;}
+#headerCnt {height: 80px;}
+
+/* Header Up Bar */
+#cntTop,#containerNewsletter {
+	float:right;
+	padding-top:12px;
+}
+#containerNewsletter { margin-right: 8px; }
+#newsletter {
+	position: relative;
+	color: #999;
+}
+#newsletter span {
+	padding-right: 5px;
+	text-transform: uppercase;
+	font-size: 12px;
+	display: block;
+	height: 18px;
+	line-height: 18px;
+	float: left;
+}
+#newsletterInput {
+	background-color: rgb(144, 144, 144);
+	background-color: rgba(144, 144, 144,0.7);
+	height: 14px;
+	line-height: 14px;
+	width: 156px;
+	color: #fff;
+	font-size: 9px;
+	text-transform: uppercase;
+	padding: 2px 0;
+	text-indent: 5px;
+	float: left;
+}
+html.ie7 #newsletterInput {
+    background-color: #909090;
+} 
+
+#newsletterSubmit {
+	background: url('http://cdn2.yoox.biz/Os/valentino3/button_home01.png') no-repeat scroll -6px -8px;
+	position: absolute;
+	display: block;
+	height: 14px;
+	width: 14px;
+	top: 2px;
+	right: 2px;
+}
+#login {
+	padding-top: 2px;
+}
+#login ul li { float: left; }
+#login ul li a {
+	font-family: 'DinLight',Arial,Verdana,serif;
+	font-size: 11px;
+	line-height: 11px;
+	display: block;
+	float: left;
+	height: 10px;
+	padding: 0 8px;
+	border-left: 1px solid #626262;
+	text-transform: uppercase;
+	color: #999;
+	margin: 3px 0 0 0;
+}
+#login ul li.first a { border: none }
+
+/* Logo */
+
+.logoTop a h1 {
+	font: 0/0 a;
+	color: white;
+	text-shadow: none;
+}
+.logoTop {
+	display: inline-block;
+	margin-bottom: 10px;
+	background: url('http://cdn2.yoox.biz/Os/valentino3/valentino.png') no-repeat scroll left top;
+	height: 45px;
+	width: 280px;
+ }
+#logo{
+	z-index: -1000px;
+}
+ 
+.redValentino .logoTop {
+	background: url('http://cdn2.yoox.biz/Os/valentino3/redvalentino.png') no-repeat scroll left top;
+	width: 225px;
+	height: 71px;
+}
+
+.headerCnt { position:relative }
+.switchSeason, .switchGender { width:100% }
+.switchSeason ul li, .switchGender ul li { float:left; }
+.switchGender ul li { padding-right: 8px; }
+.switchGender ul { float:left; }
+.mainSections { float: right; }
+.redValentino .mainSections { margin-top: -10px }
+.switchGender .navCnt li {
+	padding: 0;
+	padding-left: 8px;
+}
+#cartNum { padding-left: 5px; }
+#bannerMenu {
+	position: absolute;
+	right: 0;
+	top: 34px;
+}
+.switchSeason span.mainSeason, .switchSeason span.secondarySeason, .switchGender span {
+	font-family: 'DinMedium',Arial,Verdana,serif;
+	color: #4F5252;
+	text-transform: uppercase;
+	font-size:13px;
+	line-height: 14px;
+}
+.switchSeason span, .switchSeason a{
+	margin-right: 10px;
+}
+.switchSeason a, .switchGender a {
+	text-transform: uppercase;
+	font-size:13px;
+	line-height: 14px;
+}
+/* SubHeader Main menù */
+#subheader {
+	/*height:44px;*/
+	margin: 8px auto;
+	position: relative;
+	margin-top: 1px;
+}
+#subMenu, #searchBar {
+	height: 22px;
+}
+html.ie7 #searchBar { position: relative; }
+html.ie7 #subMenu,html.ie7 #searchBar { z-index: -1 }
+#subMenu {
+	background: rgb(144,144,144); /* The Fallback */
+	background: rgba(144,144,144,0.7);
+	width: 100%;
+}
+#searchBar {
+	background: rgb(144,144,144); /* The Fallback */
+	background: rgba(144,144,144,0.7);
+	width: 214px;
+	float: right;
+	margin-top: 1px;
+	display:none;
+	z-index: 3;
+	position: absolute;
+	right: 0;
+}
+#searchLens {
+	background:url("http://cdn2.yoox.biz/Os/valentino/main/v02/lensMenu.jpg") no-repeat scroll right top transparent;
+	border-left: 1px solid #fff;
+	height: 22px;
+	width: 30px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+#searchLens:hover {
+	opacity: 0.8;
+}
+/* -------------------------------------------- Menù Navigazione Valentino ------------------------------------------ */
+
+.menuNavigation .mpa li a{
+	position:relative;
+	text-decoration:none;
+}
+.menuNavigation .mpa li a:hover{
+	background-color: #b3b3b1;
+}
+.menuNavigation li{
+	float:left;
+	text-transform:uppercase;
+}
+.menuNavigation ul{
+	position:absolute;
+	top:-9000px;
+	z-index: 2;
+	width: 137px;
+}
+
+.menuNavigation ul.subMenu-on{
+	position:absolute;
+	top:22px;
+	left:0;
+	z-index: 1001;
+}
+li.currentSel,#subMenu li.selected{
+	background: #999999;
+	cursor:pointer;
+}
+.menuNavigation ul li{
+	float:none;
+	background-color:rgb(144,144,144); /* The Fallback */
+	background-color:rgba(144,144,144,0.7);
+	line-height:22px;
+	z-index:2;
+}
+.ie7 .menuNavigation ul li { background-color:#909090; }
+.menuNavigation ul a{
+	float:none;
+	display:block;
+}
+.mpa {
+	width: 136px;
+	margin-left: 24px;
+	text-align: center;
+	height: 22px;
+	line-height: 22px;
+	position: relative;
+	z-index: 2;
+}
+.mpa.notsel, .mpa.notsel.currentSel{ cursor:default; }
+.mpa.notsel a:hover, .mpa.notsel.currentSel a:hover{ cursor:default; }
+.mpa:hover,ul.subMenu-on li:hover,.subMenu li.selected:hover,.mpa li.selected{
+	background-color:rgb(144,144,144);
+	background-color:rgba(144,144,144,0.7);
+}
+.menuNavigation li .selected {
+	display:block;
+	height: 100%;
+}
+.menuNavigation .selected, .menuNavigation ul a{
+	color:#fff;
+	font-size: 12px;
+	line-height: 23px;
+}
+.subMenu-on{ display:block; }
+
+/* ---------------------------------------- SEARCH BAR -------------------------------------------------------------- */
+
+#searchBox {
+	text-transform: uppercase;
+	color:#fff;
+	float: right;
+	height: 22px;
+	z-index: 2;
+	position: relative;
+}
+#searchTextbox {
+	width: 120px;
+	background: white;
+	height: 15px;
+	vertical-align: top;
+	margin: 3px 5px;
+	color: black;
+	font-size: 10px;
+	line-height: 15px;
+	text-indent: 5px;
+	text-transform: uppercase;
+}
+#searchButton {
+	height: 22px;
+	width: 30px;
+	background: url('http://cdn2.yoox.biz/Os/valentino3/button_home01.png') #8f8d8c no-repeat scroll -21px -4px;
+	cursor: pointer;
+	border-left: 1px solid #fff;
+    text-indent: -9999px;
+
+}
+
+#lensOverlay {
+	position: absolute;
+	top : 0;
+	left: 0;
+	width: 100%;
+	height:100%;
+	z-index: 1;
+	background: transparent;
+}
+
+html.ie7 #textSearch span,
+html.ie7 #textSearch input,
+html.ie7 #textSearch #searchButton { float:left; }
+html.ie7 #searchBox span { padding-top: 4px; }
+
+/* ---------------------------------------- Header RED Valentino ---------------------------------------------------- */
+.redValentino .switchSeason {
+
+	margin: -58px 0 0 308px;
+}
+.redValentino #mainSectionsInner {
+	top: 72px;
+}
+
+.redValentino #mainSectionsInner {
+	font-size: 15px;
+	text-transform: uppercase;
+	font-family: 'DinLight',Arial,Verdana,serif;
+}
+
+.redValentino .mainSeason {
+	font-family: 'DinLight',Arial,Verdana,serif;
+	font-size: 26px;
+	display: block;
+	color: #727272;
+	letter-spacing: -2px;
+}
+.redValentino .navCnt li {
+	float: left;
+	padding-left: 8px;
+}
+
+#login ul li.last a { padding-right: 0;}
+
+/* ------------------------------------------- Footer  -------------------------------------------------------------- */
+
+#footer {	
+	color: #31302F;
+	padding-bottom:5px;
+	position: relative;
+    z-index:10;
+}
+#footerInner {
+	width: 990px;	
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+#ftRight a,  #ftLeft a,
+ #cyc,  #ftLeft li span {
+	color: #31302F;
+}
+
+
+ #ftLeft, #ftRight, #ftMiddle{
+	margin:0;
+	float: left;
+	margin-top: 10px;
+}
+#ftRight .copyright, #ftRight #rightTop{
+	float:right;
+}
+
+#ftLeft{
+ 	width: 41%;
+ }
+#ftMiddle{
+ 	width:22%;
+ }
+#ftRight{
+ 	width: 37%;
+ }
+ 
+ #ftRight #rightTop ul{
+	float:left;
+}
+ .copyright {
+	text-transform: uppercase;
+}
+
+ #ftMiddle a {
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+	display: block;
+	float: left;
+	margin: 0 2px;
+	background: url('http://cdn2.yoox.biz/Os/valentino3/sprite_social_vl06.png') no-repeat scroll left top;
+}
+
+.fromShoeRoom #ftMiddle a{
+	color:#FFF;
+}
+.fromShoeRoom #ftMiddle a:hover{
+	color:#000;
+}
+#ftMiddle #fb {
+ 	margin-top:-3px;
+	background-position: -9px -13px;
+}
+#ftMiddle #fb:hover {
+ 	margin-top:-3px;
+	background-position: -9px -46px;
+}
+#ftMiddle #ig {
+ 	margin-top:-3px;
+	background-position: -153px -13px;
+}
+#ftMiddle #ig:hover {
+ 	margin-top:-3px;
+	background-position: -153px -46px;
+}
+ #ftMiddle #pi {
+ 	margin-top:-3px;
+	background-position: -42px -13px;
+}
+ #ftMiddle #pi:hover {
+ 	margin-top:-3px;
+	background-position: -42px -46px;
+}
+ #ftMiddle #tw {
+ 	margin-top:-3px;
+	background-position: -72px -13px;
+}
+ #ftMiddle #tw:hover {
+ 	margin-top:-3px;
+	background-position: -72px -46px;
+}
+ #ftMiddle #yt {
+ 	margin-top:-3px;
+	width: 40px;
+	background-position: -102px -13px;
+}
+ #ftMiddle #yt:hover {
+ 	margin-top:-3px;
+	background-position: -102px -46px;
+}
+#ftMiddle #txt, #txt:hover {
+	background: none;
+}
+
+ #footer #ftRight .copyright li {
+	font-size: 8px;
+}
+
+ .copyright {
+	margin-top: 5px;
+}
+
+ .border_left {
+	border-left: 1px solid #61605f;
+}
+ .border_right {
+	border-right: 1px solid #61605f;
+}
+
+ #footer .nation_cyc {
+	font-weight: bold;
+	padding-left: 6px;
+	padding-right: 0;
+	text-align: left;
+}
+
+ #footer #ftLeft #cyc_li,
+ #footer #ftLeft .border_left {
+	padding: 0 8px;
+	font-size:10px;
+}
+#footer .nation_cycRu {
+	margin-bottom:5px; 
+	width: auto !important;
+	width: 75px;
+	max-width: 75px;
+}
+ #footer a:hover,
+ #footer #ftRight .copyright li a:hover {
+	color: #b3b3b1;
+	-webkit-transition: color .2s;
+	-moz-transition: color .2s;
+	-ms-transition: color .2s;
+	-o-transition: color .2s;
+	transition: color .2s;
+}
+
+ #footer #ftLeft #cyc_li {
+	padding-left: 0;
+}
+
+ #footer #domain a {
+	padding-left:0;
+	color:#31302F;
+}
+
+#domain {
+	color:#31302F;
+	background: none no-repeat scroll left top transparent !important;    
+    float: none !important;
+    display:inline !important;    
+    width: auto !important;
+    line-height:normal;
+}
+
+#domain:hover{
+	color:#B3B3B1;
+}
+
+#cartLink { cursor: pointer; }
+
+/* inizio cookie law box */
+#cookieLawBox {
+    width: 100%;
+    height: auto;
+    font-family: 'DinRegular', "Arial",'Verdana','serif';
+    text-align: center;
+    left:0;
+    bottom: 0;
+    position: fixed;
+    z-index: 99;
+    background-image: url('http://cdn2.yoox.biz/os/diesel/common/2.0/bg_hp_titles.png');
+}
+#cookieLawBoxInner {
+    width: 980px;
+    height: auto;
+    text-align: left;
+    color: #fff !important;
+    font-size: 14px !important;
+    margin: 16px auto;
+}
+#cookieLawBoxInner a {
+    color: #b1b1b1;
+    text-decoration: underline;
+    font-style: italic;
+}
+.cookieLawContent {
+    float: left;
+}
+#cookieLawLabel {
+   width: 90%;
+    line-height: 18px;
+}
+#cookieLawButton {
+    width: 10%;
+}
+#cookieLawSubmit {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 20px;
+    float: right;
+    border-radius: 0px;
+    border: 0px;
+    font-family: 'DinRegular', "Arial",'Verdana','serif';
+    font-size: 12px;
+    font-weight: normal;
+    box-shadow: none;
+    background: #c71717;
+    color: #fff;
+    margin: 10px 6px 0 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 12px;
+    margin: 0;
+    padding: 2px 20px;
+    float: right;
+}
+
+/* fine cookie law box */
+
+
+ /* --------------------------------------------- ROW THREE --------------------------------------------------------- */
+
+.rowThree #login,.rowThree #bannerMenu,
+.rowThree .switchSeason,
+.rowThree .switchGender,
+.rowThree #subheader,.rowThree #menuRed,
+.rowThree .innerSlot02,.rowThree .innerSlot03,
+.rowThree .innerSlot04,.rowThree .innerSlot05,
+.rowThree .innerSlot06,.rowThree .innerSlot07,
+.rowThree .innerSlot08,.rowThree .innerSlot09,
+.rowThree .innerSlot10,.rowThree .innerSlot11,
+.rowThree .innerSlot12,.rowThree .innerSlot13,
+.rowThree .innerSlot14,.rowThree .innerSlot15,
+.rowThree .innerSlot16 {
+	visibility: hidden;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.navCnt {
+	position: relative;
+	z-index: 999;
+}
+.oldprice{
+	text-decoration: line-through;
+}
+
+#debugManager {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 200px;
+	z-index: 9999999;
+	background: white;
+	color: red;
+}
+
+#debugManager textarea {
+	width: 96%;
+	height: 90%;
+	color: black;
+	font-size: 11px;
+}
+
+#teaserMessage {
+ 	color:#999999;
+ 	font-size:16px;
+ 	margin:50px auto 0;
+ 	text-align:center;
+}
+
+.imageSlideContainer a.itemContainer {
+	overflow:hidden;
+}
+
+#cnstContainer > .cnstCheckbox {
+	margin-bottom:20px;
+}
+
+iframe[name='google_conversion_frame'] {
+    display: none;
+}
+
+#videoStill{
+	position:absolute;
+	top:0;
+	left:0;
+	overflow:auto;
+}

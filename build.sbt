@@ -11,6 +11,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
+  "com.github.detro.ghostdriver" % "phantomjsdriver" % "1.0.4" % "test",
   "org.anormcypher" %% "anormcypher" % "0.4.4",
   "com.softwaremill.macwire" %% "macros" % "0.5",
   "com.typesafe.play" %% "play" % "2.2.2",
